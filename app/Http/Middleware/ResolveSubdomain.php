@@ -10,14 +10,6 @@ use App\Models\PageModel;
 
 class ResolveSubdomain
 {
-    namespace App\Http\Middleware;
-
-use Closure;
-use Illuminate\Http\Request;
-use App\Models\PageModel;
-
-class ResolveSubdomain
-{
     public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
@@ -39,5 +31,4 @@ class ResolveSubdomain
 
         return $next($request);
     }
-}
 }
