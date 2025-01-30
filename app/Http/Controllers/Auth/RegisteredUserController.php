@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         
         UserPerfilModel::create([
             'user_id' => $user->id,
-            'perfil_id' => $request['perfil_id'],
+            'perfil_id' => 2,
             'is_atual' => 1, // Ou qualquer outro valor que você deseja para "is_atual"
             'status' => 1, // Ou outro valor que você deseja para "status"
         ]);
