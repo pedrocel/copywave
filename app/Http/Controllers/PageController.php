@@ -177,7 +177,7 @@ class PageController extends Controller
         }
 
         // Se não encontrar, retorna 404
-        return abort(404, 'Página não encontrada.');
+        return view('welcome');
     }
 
     public function showByName($name)
