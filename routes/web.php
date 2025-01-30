@@ -37,7 +37,9 @@ Route::middleware([ResolveSubdomain::class])->group(function () {
 });
 
 Route::domain('{subdomain}.copywave.io')->group(function () {
-    Route::get('/', [PageController::class, 'showSubdomain']);
+    Route::get('/', function ($subdomain) {
+        return "Você acessou o subdomínio: $subdomain";
+    });
 });
 
 Route::middleware(['auth', RedirectByProfile::class])->prefix('admin')->group(function () {
