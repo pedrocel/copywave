@@ -18,9 +18,9 @@ class ResolveSubdomain
 
         // Verifica se o subdomínio é válido
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
-
+ 
             $domain = DomainModel::where('domain', $subdomain)->first();
-            $page = PageModel::where('domain_id', $domain->domain)->first();
+            $page = PageModel::where('domain_id', $domain->id)->first();
 
             if ($page) {
                 $request->attributes->set('page', $page);
