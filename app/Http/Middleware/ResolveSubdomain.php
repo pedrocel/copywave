@@ -16,7 +16,6 @@ class ResolveSubdomain
         $host = $request->getHost();
         $subdomain = explode('.', $host)[0];
 
-
         // Verifica se o subdomínio é válido;
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
  

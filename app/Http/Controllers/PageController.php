@@ -159,7 +159,6 @@ class PageController extends Controller
     {
         $host = $request->getHost(); // Obtém o domínio acessado
 
-        dd($host);
         // Busca a página através do domínio vinculado
         $domain = DomainModel::where('domain', $host)->first();
         $page = PageModel::where('domain_id', $domain->id)->first();
