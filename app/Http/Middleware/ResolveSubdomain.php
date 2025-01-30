@@ -24,7 +24,7 @@ class ResolveSubdomain
             $page = PageModel::where('domain_id', $domain->id)->first();
 
             if ($page) {
-                $request->attributes->set('content', $page->content);
+                return view('pages.show', compact('page'));
             } else {
                 return redirect('/');
             }

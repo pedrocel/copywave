@@ -160,12 +160,11 @@ class PageController extends Controller
         $host = $request->getHost(); // Obtém o domínio acessado
 
         // Busca a página através do domínio vinculado
-        $page = PageModel::whereHas('domain', function ($query) use ($host) {
-            $query->where('domain', $host);
-        })->first();
+        $domain = DomainModel::where('domain', $host)->first();
+        $page = PageModel::where('domain_id', $domain->id)->first();
 
         if ($page) {
-            return view('cliente.pages.show', compact('page'));
+            return view('cliente.pages.show', compact(['content' => $page->content]));
         }
 
         // Caso não seja um domínio vinculado, verifica o acesso via subdomínio
@@ -173,7 +172,7 @@ class PageController extends Controller
         $page = PageModel::where('name', $subdomain)->first();
 
         if ($page) {
-            return view('cliente.pages.show', compact('page'));
+            return view('cliente.pages.show', compact(['content' => $page->content]));
         }
 
         // Se não encontrar, retorna 404
