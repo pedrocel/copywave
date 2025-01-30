@@ -157,17 +157,27 @@ class PageController extends Controller
 
     public function show(Request $request)
     {
-        $page = $request->attributes->get('page');
+        $host = $request->getHost(); // Obtém o domínio acessado
 
-        if (!$page->status) {
-            abort(500);
+        // Busca a página através do domínio vinculado
+        $page = PageModel::whereHas('domain', function ($query) use ($host) {
+            $query->where('domain', $host);
+        })->first();
+
+        if ($page) {
+            return view('cliente.pages.show', compact('page'));
         }
 
-        // Incrementar o número de visitas
-        $page->increment('visits');
+        // Caso não seja um domínio vinculado, verifica o acesso via subdomínio
+        $subdomain = explode('.', $host)[0]; // Obtém o subdomínio
+        $page = PageModel::where('name', $subdomain)->first();
 
-        // Renderizar o conteúdo clonado
-        return view('pages.show', ['content' => $page->content]);
+        if ($page) {
+            return view('cliente.pages.show', compact('page'));
+        }
+
+        // Se não encontrar, retorna 404
+        return abort(404, 'Página não encontrada.');
     }
 
     public function showByName($name)
