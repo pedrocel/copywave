@@ -28,6 +28,9 @@
             <a href="{{ route('login') }}" class="px-6 py-2 bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white rounded-full hover:bg-gradient-to-l hover:from-[#AB66FF] hover:to-[#CC54F4] transition duration-300">
                 Login
             </a>
+            <a href="{{ route('register') }}" class="hidden lg:inline-block px-6 py-2 border-2 border-white text-white rounded-full hover:bg-white hover:text-gradient-to-r hover:from-[#CC54F4] hover:to-[#AB66FF] transition duration-300">
+                Cadastro
+            </a>
         </nav>
 
         <!-- Hamburguer Menu para Mobile -->
