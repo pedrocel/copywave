@@ -161,22 +161,16 @@ class PageController extends Controller
 
         // Busca a página através do domínio vinculado
         $domain = DomainModel::where('domain', $host)->first();
-        $page = PageModel::where('domain_id', $domain->id)->first();
 
-        if ($page) {
-            return view('pages.show', ['content' => $page->content]);
+        if($domain) {
+            $page = PageModel::where('domain_id', $domain->id)->first();
+
+            if ($page) {
+                return view('pages.show', ['content' => $page->content]);
+            }
+        }else{
+            return view('welcome');
         }
-
-        // Caso não seja um domínio vinculado, verifica o acesso via subdomínio
-        $subdomain = explode('.', $host)[0]; // Obtém o subdomínio
-        $page = PageModel::where('name', $subdomain)->first();
-
-        if ($page) {
-            return view('cliente.pages.show', ['content' => $page->content]);
-        }
-
-        // Se não encontrar, retorna 404
-        return view('welcome');
     }
 
     public function showByName($name)
