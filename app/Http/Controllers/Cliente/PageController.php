@@ -119,7 +119,7 @@ class PageController extends Controller
         $page->domain_id = null;
         $page->save();
 
-        return redirect()->route('cliente.pages.detail', $id)->with('success', 'Domínio desvinculado com sucesso.');
+        return redirect()->route('cliente.pages.detail', $page->name)->with('success', 'Domínio desvinculado com sucesso.');
     }
 
     public function checkCname(Request $request)

@@ -64,52 +64,86 @@
     </div>
 
     <div class="container mx-4">
-        <div class="mb-4"><br>
-            <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Vincular Domínio</h3>
-            @if ($page->domain_id)
-                <form action="{{ route('cliente.pages.detachDomain', $page->id) }}" method="POST" class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-                    @csrf
-                    @method('DELETE')
-                    <div class="mb-4">
-                        <label class="block text-gray-700 dark:text-gray-200 font-medium">Domínio Vinculado</label>
-                        <input type="text" value="{{ $page->domain->domain }}" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200" disabled>
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300">
-                            Desvincular
-                        </button>
-                    </div>
-                </form>
-            @else
-                <form action="{{ route('cliente.pages.attachDomain', $page->id) }}" method="POST" class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="domain_id" class="block text-gray-700 dark:text-gray-200 font-medium">Selecionar Domínio</label>
-                        <select name="domain_id" id="domain_id" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
-                            @foreach($domains as $domain)
-                                <option value="{{ $domain->id }}">{{ $domain->domain }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300">
-                            Salvar
-                        </button>
-                    </div>
-                </form>
-            @endif
-        </div>
+    <div class="mb-4">
+        <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Vincular Domínio</h3>
 
         @if ($page->domain_id)
-            <div class="mb-4">
-                <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Verificar CNAME</h3>
-                <button type="button" id="check-cname" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300">
-                    Verificar CNAME
-                </button>
-                <p id="cname-result" class="mt-2 text-gray-500 dark:text-gray-400"></p>
-            </div>
+            <form action="{{ route('cliente.pages.detachDomain', $page->id) }}" method="POST" class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
+                @csrf
+                @method('DELETE')
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-200 font-medium">Domínio Vinculado</label>
+                    <input type="text" value="{{ $page->domain->domain }}" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200" disabled>
+                </div>
+
+                @php
+                    $domain = $page->domain->domain;
+                    $dnsRecords = dns_get_record($domain, DNS_CNAME);
+                    $isPointed = false;
+
+                    foreach ($dnsRecords as $record) {
+                        if ($record['target'] === 'copywave.io') {
+                            $isPointed = true;
+                            break;
+                        }
+                    }
+                @endphp
+
+                @if ($isPointed)
+                    <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+                        ✅ O domínio <strong>{{ $domain }}</strong> está corretamente apontado para <strong>copywave.io</strong>.
+                    </div>
+                @else
+                    <div class="bg-yellow-100 text-yellow-800 p-4 rounded mb-4">
+                        ⚠️ O domínio <strong>{{ $domain }}</strong> ainda não está apontado corretamente. Verifique as configurações de DNS.
+                    </div>
+                @endif
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300">
+                        Desvincular
+                    </button>
+                </div>
+            </form>
+        @else
+            <form action="{{ route('cliente.pages.attachDomain', $page->id) }}" method="POST" class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
+                @csrf
+                <div class="mb-4">
+                    <label for="domain_id" class="block text-gray-700 dark:text-gray-200 font-medium">Selecionar Domínio</label>
+                    <select name="domain_id" id="domain_id" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                        @foreach($domains as $domain)
+                            <option value="{{ $domain->id }}">{{ $domain->domain }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300">
+                        Salvar
+                    </button>
+                </div>
+            </form>
         @endif
+
+        <div class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg mt-6">
+            <p class="text-gray-700 dark:text-gray-200 mb-4">
+                Para que seu domínio funcione corretamente, você precisa criar um registro <strong>CNAME</strong> apontando para o nosso domínio. 
+            </p>
+
+            <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-sm">
+                <p class="text-gray-800 dark:text-gray-200">
+                    <strong>Tipo do registro:</strong> CNAME <br>
+                    <strong>Nome:</strong> <span class="text-blue-500">{{ $page->name }}</span> <br>
+                    <strong>Valor:</strong> <span class="text-blue-500">copywave.io</span>
+                </p>
+            </div>
+
+            <p class="text-gray-700 dark:text-gray-200 mt-4">
+                Após configurar o apontamento, aguarde a propagação do DNS, que pode levar algumas horas.
+            </p>
+        </div>
     </div>
+</div>
+
 
     <script>
         document.getElementById('check-cname')?.addEventListener('click', function() {
