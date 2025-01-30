@@ -164,7 +164,7 @@ class PageController extends Controller
         $page = PageModel::where('domain_id', $domain->id)->first();
 
         if ($page) {
-            return view('cliente.pages.show', compact(['content' => $page->content]));
+            return view('pages.show', ['content' => $page->content]);
         }
 
         // Caso não seja um domínio vinculado, verifica o acesso via subdomínio
@@ -172,7 +172,7 @@ class PageController extends Controller
         $page = PageModel::where('name', $subdomain)->first();
 
         if ($page) {
-            return view('cliente.pages.show', compact(['content' => $page->content]));
+            return view('cliente.pages.show', ['content' => $page->content]);
         }
 
         // Se não encontrar, retorna 404
