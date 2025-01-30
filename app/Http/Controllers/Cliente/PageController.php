@@ -7,6 +7,7 @@ use App\Models\DomainModel;
 use Illuminate\Http\Request;
 use App\Models\PageModel;
 use App\Models\PageModification;
+use App\Models\SubscriptionModel;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,8 +20,28 @@ class PageController extends Controller
         return view('cliente.pages.index', compact('pages'));
     }
 
+    public function plan()
+    {
+        $pages = PageModel::where('user_id', Auth::user()->id)->get();
+        return view('cliente.pages.index', compact('pages'));
+    }
+
     public function create()
     {
+        $user = Auth::user();
+
+        // Verifica se o usuário tem uma assinatura válida
+        $subscription = SubscriptionModel::where('user_id', $user->id)
+            ->where('status', 'active')  // Verifica se a assinatura está ativa
+            ->first();
+
+        // Se não houver assinatura ou a assinatura tiver mais de 30 dias de pagamento
+        if (!$subscription || $subscription->paid_at->diffInDays(now()) > 30) {
+            // Redireciona o usuário para a tela de compra de assinatura
+            return redirect()->route('subscription.purchase')->with('message', 'Sua assinatura expirou ou você ainda não possui uma assinatura.');
+        }
+
+        // Caso a assinatura seja válida, retorna a página de criação normalmente
         return view('cliente.pages.create');
     }
 

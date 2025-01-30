@@ -80,13 +80,27 @@ class WebhookController extends Controller
             // Verifica o evento
             if ($request->order_status === 'paid') {
 
-                $user = User::create([
-                    'name' => $request['Customer']['full_name'],
-                    'email' => $request['Customer']['email'],
-                    'password' => Hash::make(123456789),
-                ]);
-        
-                // Cria uma assinatura
+                // Verifica se o usuário já existe
+                $user = User::where('email', $request['Customer']['email'])->first();
+
+                // Se o usuário não existir, cria o usuário, a assinatura e o perfil
+                if (!$user) {
+                    $user = User::create([
+                        'name' => $request['Customer']['full_name'],
+                        'email' => $request['Customer']['email'],
+                        'password' => Hash::make(123456789),
+                    ]);
+
+                    // Cria o perfil para o novo usuário
+                    UserPerfilModel::create([
+                        'user_id' => $user->id,
+                        'perfil_id' => 2,
+                        'is_atual' => 1,
+                        'status' => 1
+                    ]);
+                }
+
+                // Cria ou atualiza a assinatura
                 SubscriptionModel::create([
                     'user_id' => $user->id,
                     'offer_id' => 1,
@@ -95,15 +109,11 @@ class WebhookController extends Controller
                     'payment_method' => $request['payment_method'],
                     'paid_at' => now(),
                 ]);
-        
-                UserPerfilModel::create([
-                    'user_id' => $user->id,
-                    'perfil_id' => 2,
-                    'is_atual' => 1,
-                    'status' => 1
-                ]);
+            
+                // Atualiza o log como processado
                 $log->update(['status' => 'processed']);
             } else {
+                // Caso o status não seja "paid", marca como ignorado
                 $log->update(['status' => 'ignored']);
             }
 

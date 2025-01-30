@@ -20,4 +20,8 @@ class DashboardController extends Controller
 
         return view('cliente.dashboard', compact('totalPages', 'totalDomains', 'totalVisits', 'latestPages'));
     }
+
+    public function plan(){
+        return view('plans');
+    }
 }
