@@ -158,21 +158,28 @@ class PageController extends Controller
 
     public function show(Request $request)
     {
-        $page = $request->attributes->get('page');
+        return view('welcome');
+    }
 
-        if ($page) {
-            if (!$page->status) {
-                abort(500);
+    public function showSubdomain(Request $request, $subdomain)
+    {
+        if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
+            $page = PageModel::where('name', $subdomain)->first();
+
+            if ($page) {
+                if (!$page->status) {
+                    abort(500);
+                }
+
+                // Incrementar o número de visitas
+                $page->increment('visits');
+
+                // Renderizar o conteúdo clonado
+                return view('pages.show', ['content' => $page->content]);
             }
-
-            // Incrementar o número de visitas
-            $page->increment('visits');
-
-            // Renderizar o conteúdo clonado
-            return view('pages.show', ['content' => $page->content]);
         }
 
-        return view('welcome');
+        return redirect('/');
     }
 
     public function showByName($name)

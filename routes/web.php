@@ -36,6 +36,10 @@ Route::middleware([ResolveSubdomain::class])->group(function () {
     Route::get('/', [PageController::class, 'show']);
 });
 
+Route::domain('{subdomain}.copywave.io')->group(function () {
+    Route::get('/', [PageController::class, 'showSubdomain']);
+});
+
 Route::middleware(['auth', RedirectByProfile::class])->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     
