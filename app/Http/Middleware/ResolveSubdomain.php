@@ -17,11 +17,10 @@ class ResolveSubdomain
         $subdomain = explode('.', $host)[0];
 
 
-dd($host);
         // Verifica se o subdomínio é válido;
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
  
-            $domain = DomainModel::where('domain', $subdomain)->first();
+            $domain = DomainModel::where('domain', $host)->first();
             $page = PageModel::where('domain_id', $domain->id)->first();
 
             if ($page) {
