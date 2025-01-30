@@ -24,9 +24,6 @@ class ResolveSubdomain
             } else {
                 return redirect('/');
             }
-        } else {
-            // Se não houver subdomínio, continue normalmente
-            return $next($request);
         }
 
         return $next($request);
