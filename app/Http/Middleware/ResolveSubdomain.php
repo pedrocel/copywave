@@ -19,10 +19,10 @@ class ResolveSubdomain
         // Verifica se o subdomínio é válido;
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
  
-            $page = PageModel::where('name', $subdomain)->first();
+            $content = PageModel::where('name', $subdomain)->first();
 
-            if ($page) {
-                return view('pages.show', compact(['content' => $page->content]));
+            if ($content) {
+                return view('pages.show', compact(['content' => $content['content']]));
             } else {
                 return redirect('/');
             }
