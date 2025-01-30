@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\DomainModel;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,8 +19,8 @@ class ResolveSubdomain
         // Verifica se o subdomínio é válido
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
 
-            dd($subdomain);
-            $page = PageModel::where('name', $subdomain)->first();
+            $domain = DomainModel::where('domain', $subdomain)->first();
+            $page = PageModel::where('domain_id', $domain->domain)->first();
 
             if ($page) {
                 $request->attributes->set('page', $page);
