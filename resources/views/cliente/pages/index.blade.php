@@ -45,8 +45,8 @@
                         </form>
                     </p>
                     <div class="flex justify-between mt-4">
-                    <a href="https://{{ $page->name }}.copywave.io" target="_blank" class="text-blue-500 hover:underline">Visualizar</a>
-                    <a href="{{ route('cliente.pages.detail', $page->name) }}" class="text-blue-500 hover:underline">Detalhes</a>
+                        <a href="{{ route('cliente.pages.show', $page->name) }}" class="text-blue-500 hover:underline">Visualizar</a>
+                        <a href="{{ route('cliente.pages.detail', $page->name) }}" class="text-blue-500 hover:underline">Detalhes</a>
                         <form action="{{ route('cliente.pages.destroy', $page->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
