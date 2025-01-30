@@ -16,15 +16,13 @@ class ResolveSubdomain
         $host = $request->getHost();
         $subdomain = explode('.', $host)[0];
 
-
         // Verifica se o subdomínio é válido;
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
  
-            $domain = DomainModel::where('domain', $host)->first();
-            $page = PageModel::where('domain_id', $domain->id)->first();
+            $page = PageModel::where('name', $subdomain)->first();
 
             if ($page) {
-                return view('pages.show', compact('page'));
+                return view('pages.show', compact(['content' => $page->content]));
             } else {
                 return redirect('/');
             }
