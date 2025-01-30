@@ -22,7 +22,7 @@ class ResolveSubdomain
             $page = PageModel::where('name', $subdomain)->first();
 
             if ($page) {
-                return view('cliente.pages.show', compact(['content' => $page->content]));
+                return view('pages.show', compact(['content' => $page->content]));
             } else {
                 return redirect('/');
             }
