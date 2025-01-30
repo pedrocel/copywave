@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserPerfilModel;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -39,6 +40,13 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+        
+        UserPerfilModel::create([
+            'user_id' => $user->id,
+            'perfil_id' => $request['perfil_id'],
+            'is_atual' => 1, // Ou qualquer outro valor que você deseja para "is_atual"
+            'status' => 1, // Ou outro valor que você deseja para "status"
         ]);
 
         event(new Registered($user));
