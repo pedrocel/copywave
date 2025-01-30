@@ -10,22 +10,34 @@ use App\Models\PageModel;
 
 class ResolveSubdomain
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use App\Models\PageModel;
+
+class ResolveSubdomain
+{
+    public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
         $subdomain = explode('.', $host)[0];
 
-        $page = PageModel::where('name', $subdomain)->first();
+        // Verifica se o subdomínio é válido
+        if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
+            $page = PageModel::where('name', $subdomain)->first();
 
-        if ($page) {
-            $request->attributes->set('page', $page);
+            if ($page) {
+                $request->attributes->set('page', $page);
+            } else {
+                return redirect('/');
+            }
+        } else {
+            // Se não houver subdomínio, continue normalmente
+            return $next($request);
         }
 
         return $next($request);
     }
+}
 }

@@ -160,15 +160,19 @@ class PageController extends Controller
     {
         $page = $request->attributes->get('page');
 
-        if (!$page->status) {
-            abort(500);
+        if ($page) {
+            if (!$page->status) {
+                abort(500);
+            }
+
+            // Incrementar o número de visitas
+            $page->increment('visits');
+
+            // Renderizar o conteúdo clonado
+            return view('pages.show', ['content' => $page->content]);
         }
 
-        // Incrementar o número de visitas
-        $page->increment('visits');
-
-        // Renderizar o conteúdo clonado
-        return view('cliente.pages.show', ['content' => $page->content]);
+        return view('welcome');
     }
 
     public function showByName($name)
