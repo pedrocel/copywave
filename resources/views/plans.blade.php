@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-    <section id="pricing" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <h3 class="text-3xl font-bold text-center mb-12">Você precisa de um plano para continuar</h3>
       <div class="flex flex-wrap justify-center gap-6">
@@ -66,5 +65,4 @@
         </div>
       </div>
     </div>
-  </section>
 </x-app-layout>
