@@ -126,7 +126,7 @@ Route::middleware(['auth', RedirectByProfile::class])->prefix('admin')->group(fu
 });
 
 Route::middleware(['auth', RedirectByProfile::class])->prefix('cliente')->group(function () {
-    Route::get('/dashboard', [ClienteDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [ClientePageController::class, 'index'])->name('dashboard');
     Route::get('/plan', [ClienteDashboardController::class, 'plan'])->name('subscription.purchase');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

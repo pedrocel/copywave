@@ -16,7 +16,7 @@
   <!-- Header -->
   <header class="bg-gradient text-white py-4">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">CopyWave</h1>
+      <h1 class="text-2xl font-bold p-3">CopyWave</h1>
       
       <!-- Menu Desktop -->
       <nav class="hidden md:flex items-center space-x-4">
@@ -133,7 +133,7 @@
             <h4 class="text-2xl font-bold mb-2">3 Páginas</h4>
             <p class="text-gray-600 mb-6">Ideal para projetos pequenos</p>
             <div class="text-4xl font-bold text-[#CC54F4] mb-6">R$39,90</div>
-            <a href="https://pay.kiwify.com.br/IXO52Nf" class="block w-full bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white py-3 rounded-lg hover:from-[#AB66FF] hover:to-[#CC54F4] transition">
+            <a href="https://pay.kiwify.com.br/lXQ52Nf" class="block w-full bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white py-3 rounded-lg hover:from-[#AB66FF] hover:to-[#CC54F4] transition">
               Assinar Agora
             </a>
           </div>
@@ -185,8 +185,6 @@
       </div>
     </div>
   </section>
-
-
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-8">
     <div class="container mx-auto text-center">

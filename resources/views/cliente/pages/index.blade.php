@@ -24,11 +24,7 @@
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
                     <h3 class="text-xl font-semibold mb-2">{{ $page->name }}</h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>URL da Página:</strong> <a href="{{ $page->url_page }}" class="text-blue-500 hover:underline">{{ $page->url_page }}</a></p>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>URL de Checkout:</strong> <a href="{{ $page->url_checkout }}" class="text-blue-500 hover:underline">{{ $page->url_checkout }}</a></p>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>ID Externo:</strong> {{ $page->external_id }}</p>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>ID do Usuário:</strong> {{ $page->user_id }}</p>
                     <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Visitas:</strong> {{ $page->visits }}</p>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Pública:</strong> {{ $page->is_public ? 'Sim' : 'Não' }}</p>
                     <p class="text-gray-600 dark:text-gray-400 mb-2">
                         <strong>Status:</strong>
                         <form action="{{ route('cliente.pages.toggleStatus', $page->id) }}" method="POST" class="inline-block">
@@ -44,15 +40,40 @@
                             </label>
                         </form>
                     </p>
-                    <div class="flex justify-between mt-4">
-                        <a href="{{ route('cliente.pages.show', $page->name) }}" class="text-blue-500 hover:underline">Visualizar</a>
-                        <a href="{{ route('cliente.pages.detail', $page->name) }}" class="text-blue-500 hover:underline">Detalhes</a>
-                        <form action="{{ route('cliente.pages.destroy', $page->id) }}" method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Deseja excluir?')">Excluir</button>
-                        </form>
-                    </div>
+                    <div class="flex justify-between mt-4 space-x-4">
+    <!-- Botão Visualizar -->
+    <a href="{{ route('cliente.pages.show', $page->name) }}" 
+       class="flex items-center text-blue-500 hover:text-blue-600 transition duration-300">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+        </svg>
+        Visualizar
+    </a>
+
+    <!-- Botão Detalhes -->
+    <a href="{{ route('cliente.pages.detail', $page->name) }}" 
+       class="flex items-center text-blue-500 hover:text-blue-600 transition duration-300">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        Detalhes
+    </a>
+
+    <!-- Botão Excluir -->
+    <form action="{{ route('cliente.pages.destroy', $page->id) }}" method="POST" class="inline-block">
+        @csrf
+        @method('DELETE')
+        <button type="submit" 
+                class="flex items-center text-red-500 hover:text-red-600 transition duration-300" 
+                onclick="return confirm('Deseja excluir?')">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+            Excluir
+        </button>
+    </form>
+</div>
                 </div>
             @empty
                 <p class="text-center py-4 text-gray-500 dark:text-gray-400 col-span-full">Nenhuma página cadastrada.</p>
