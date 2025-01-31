@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-    <div class="container mx-auto px-4">
       <h3 class="text-3xl font-bold text-center mb-12">Você precisa de um plano para continuar</h3>
       <div class="flex flex-wrap justify-center gap-6">
         <!-- Plano 3 páginas -->
@@ -64,5 +63,4 @@
           </div>
         </div>
       </div>
-    </div>
 </x-app-layout>
