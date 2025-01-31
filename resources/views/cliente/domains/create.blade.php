@@ -11,7 +11,7 @@
 
             {{-- Domínio --}}
             <div class="mb-4">
-                <label for="domain" class="block text-gray-700 dark:text-gray-200 font-medium">Domínio</label>
+                <label for="domain" class="block text-gray-700 dark:text-gray-200 font-medium">Cadastre aqui seu Domínio - Siga instruções para apontar o domínio nos detalhes a página.</label>
                 <input 
                     type="text" 
                     name="domain" 

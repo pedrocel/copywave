@@ -62,10 +62,18 @@
             </div>
         </div>
     </div>
-
+<br>
     <div class="container mx-4">
     <div class="mb-4">
-        <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Vincular Domínio</h3>
+    <div class="container mx-auto px-4 py-6">
+        <div class="flex justify-between items-center gap-1">
+            <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Vincular Domínio</h3>
+            <a href="{{ route('cliente.domains.create') }}" 
+            class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] hover:bg-gradient-to-l text-white py-2 px-4 rounded transition-all duration-300 shadow hover:shadow-lg">
+                Adicionar novo Domínio
+            </a>
+        </div>
+    </div>
 
         @if ($page->domain_id)
             <form action="{{ route('cliente.pages.detachDomain', $page->id) }}" method="POST" class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
@@ -75,33 +83,18 @@
                     <label class="block text-gray-700 dark:text-gray-200 font-medium">Domínio Vinculado</label>
                     <input type="text" value="{{ $page->domain->domain }}" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200" disabled>
                 </div>
-
-                @php
-                    $domain = $page->domain->domain;
-                    $dnsRecords = dns_get_record($domain, DNS_CNAME);
-                    $isPointed = false;
-
-                    foreach ($dnsRecords as $record) {
-                        if ($record['target'] === 'copywave.io') {
-                            $isPointed = true;
-                            break;
-                        }
-                    }
-                @endphp
-
-                @if ($isPointed)
-                    <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
-                        ✅ O domínio <strong>{{ $domain }}</strong> está corretamente apontado para <strong>copywave.io</strong>.
+                @if($hasCname)
+                    <div class="bg-green-500 text-white p-4 rounded-md">
+                        ✅ O domínio está corretamente configurado para copywave.io
                     </div>
                 @else
-                    <div class="bg-yellow-100 text-yellow-800 p-4 rounded mb-4">
-                        ⚠️ O domínio <strong>{{ $domain }}</strong> ainda não está apontado corretamente. Verifique as configurações de DNS.
+                    <div class="bg-red-500 text-white p-4 rounded-md">
+                        ⚠️ O domínio não está apontando corretamente para copywave.io. Verifique as configurações de DNS.
                     </div>
-                @endif
-
+                @endif<Br>
                 <div class="flex justify-end">
                     <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300">
-                        Desvincular
+                        Desvincular dominio da página
                     </button>
                 </div>
             </form>
@@ -131,8 +124,8 @@
 
             <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-sm">
                 <p class="text-gray-800 dark:text-gray-200">
-                    <strong>Tipo do registro:</strong> CNAME <br>
-                    <strong>Nome:</strong> <span class="text-blue-500">@</span> <br>
+                    <strong>Tipo do registro:</strong> CNAME - 
+                    <strong>Nome:</strong> <span class="text-blue-500">@</span> -
                     <strong>Valor:</strong> <span class="text-blue-500">{{ $page->name }}.copywave.io</span>
                 </p>
             </div>

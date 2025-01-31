@@ -120,10 +120,21 @@ class PageController extends Controller
     {
         $page = PageModel::where('name', $name)->firstOrFail();
         $modifications = PageModification::where('page_id', $page->id)->get();
-        $domains = DomainModel::where('user_id', Auth::user()->id)->get();
 
-        return view('cliente.pages.detail', compact('page', 'modifications', 'domains'));
+        $linkedDomainIds = PageModel::pluck('domain_id')->toArray();
+
+        $domains = DomainModel::where('user_id', Auth::user()->id)
+                            ->whereNotIn('id', $linkedDomainIds) 
+                            ->get();
+
+        $hasCname = false;
+        if ($page->domain) {
+            $hasCname = $this->checkCname($page->domain->domain);
+        }
+
+        return view('cliente.pages.detail', compact('page', 'modifications', 'domains', 'hasCname'));
     }
+
     
     public function attachDomain(Request $request, $id)
     {
@@ -143,22 +154,22 @@ class PageController extends Controller
         return redirect()->route('cliente.pages.detail', $page->name)->with('success', 'Domínio desvinculado com sucesso.');
     }
 
-    public function checkCname(Request $request)
-    {
-        $domain = $request->query('domain');
-        $cname = $request->query('cname');
-
-        $dnsRecords = dns_get_record($domain, DNS_CNAME);
-        $exists = false;
-
-        foreach ($dnsRecords as $record) {
-            if ($record['target'] === $cname) {
-                $exists = true;
-                break;
+    function checkCname($domain) {
+        $records = dns_get_record($domain, DNS_CNAME);
+        
+        if (!$records) {
+            return false; // Nenhum registro CNAME encontrado
+        }
+    
+        foreach ($records as $record) {
+            if (isset($record['target'])) {
+                if (strpos($record['target'], 'copywave.io') !== false) {
+                    return true; // O CNAME aponta para copywave.io ou um subdomínio
+                }
             }
         }
-
-        return response()->json(['exists' => $exists]);
+    
+        return false; // Nenhum CNAME válido encontrado
     }
     private function modifyImages($dom, $oldValue, $newValue)
     {
