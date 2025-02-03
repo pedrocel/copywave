@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Cliente\DashboardController as ClienteDashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProductController as ProductLibraryController;
@@ -20,14 +21,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Middleware\RedirectByProfile;
 use App\Http\Controllers\SubscriptionController;
-
+use App\Models\PlanModel;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/lp', function () {
-    return view('welcome');
+    $plans = PlanModel::where('status', 1)->get();
+    return view('welcome', compact('plans'));
 });
 
 // Route::get('/dashboard', function () {
@@ -119,6 +121,17 @@ Route::middleware(['auth', RedirectByProfile::class])->prefix('admin')->group(fu
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
         Route::put('{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
         Route::delete('{id}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+    });
+
+    Route::prefix('plans')->group(function () {
+        Route::get('/', [PlanController::class, 'index'])->name('admin.plans.index');
+        Route::get('/create', [PlanController::class, 'create'])->name('admin.plans.create');
+        Route::post('/create', [PlanController::class, 'store'])->name('admin.plans.store');
+        Route::get('/edit/{plan}', [PlanController::class, 'edit'])->name('admin.plans.edit');
+        Route::put('/edit/{plan}', [PlanController::class, 'update'])->name('admin.plans.update');
+        Route::delete('{plan}', [PlanController::class, 'destroy'])->name('admin.plans.destroy');
+        // Route::get('/criar', [CategoryController::class, 'create'])->name('admin.categories.create');
+        // Route::post('/', [CategoryController::class, 'store'])->name('admin.categories.store');
     });
 
     Route::get('product/detail/{id}', [ProductLibraryController::class, 'detail'])->name('admin.products.detail');

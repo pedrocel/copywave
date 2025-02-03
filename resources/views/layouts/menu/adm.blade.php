@@ -9,6 +9,15 @@
         @endif">
         <i class="fas fa-tachometer-alt mr-2"></i><span class="menu-label">Dashboard</span> 
     </a>
+    <a href="{{ route('admin.plans.index') }}" id="menuButton" class="block px-4 py-2 text-gray-200 
+            @if(Str::contains(Route::currentRouteName(), 'plans')) 
+                bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white 
+            @else
+                bg-[#1E1E1E] text-gradient hover:bg-gradient-to-r hover:from-[#CC54F4] hover:to-[#AB66FF] 
+            @endif
+            rounded-[10px] text-sm">
+            <i class="fas fa-rocket mr-2"></i><span class="menu-label">Gestão de planos</span>
+    </a>
     <a href="/profile" id="menuButton" class="block px-4 py-2 text-gray-200 
         @unless(Route::is('profile.edit')) 
             bg-[#1E1E1E] text-gradient hover:bg-gradient-to-r hover:from-[#CC54F4] hover:to-[#AB66FF] 
