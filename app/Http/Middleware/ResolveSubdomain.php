@@ -16,7 +16,7 @@ class ResolveSubdomain
     {
         $host = $request->getHost();
         $subdomain = explode('.', $host)[0];
-
+        $plans = PlanModel::where('status', 1)->get();
         // Verifica se o subdomínio é válido;
         if ($subdomain && $subdomain !== 'www' && $subdomain !== 'copywave') {
  
@@ -26,7 +26,7 @@ class ResolveSubdomain
             if ($page) {
                 $request->attributes->set('page', $page);
             } else {
-                $plans = PlanModel::where('status', 1)->get();
+                
                 return view('welcome', compact('plans'));   
             }
         }
