@@ -23,10 +23,7 @@ use App\Http\Middleware\RedirectByProfile;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\PlanModel;   
 
-Route::get('/', function () {
-    $plans = PlanModel::where('status', 1)->get();
-    return view('welcome', compact('plans'));
-});
+Route::get('/', [PageController::class, 'landingPage'])->name('landingPage');
 
 Route::get('/astro', function () {
     return view('astrolus');

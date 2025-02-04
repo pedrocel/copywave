@@ -38,4 +38,6 @@ class SubscriptionController extends Controller
             'subscription' => $subscription,
         ], 201);
     }
+
+    
 }

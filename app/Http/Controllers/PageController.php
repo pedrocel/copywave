@@ -6,12 +6,18 @@ use App\Models\DomainModel;
 use Illuminate\Http\Request;
 use App\Models\PageModel;
 use App\Models\PageModification;
+use App\Models\PlanModel;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
+    public function landingPage(){
+        $plans = PlanModel::where('status', 1)->get();
+        return view('welcome', compact('plans'));   
+    }
+
     public function index()
     {
         $pages = PageModel::all();
