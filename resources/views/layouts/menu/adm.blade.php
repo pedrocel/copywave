@@ -18,16 +18,6 @@
             rounded-[10px] text-sm">
             <i class="fas fa-rocket mr-2"></i><span class="menu-label">Gestão de planos</span>
     </a>
-    <a href="/profile" id="menuButton" class="block px-4 py-2 text-gray-200 
-        @unless(Route::is('profile.edit')) 
-            bg-[#1E1E1E] text-gradient hover:bg-gradient-to-r hover:from-[#CC54F4] hover:to-[#AB66FF] 
-        @endunless
-        rounded-[10px] text-sm
-        @if(Route::is('profile.edit')) 
-            bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white 
-        @endif">
-        <i class="fas fa-user-circle mr-2"></i><span class="menu-label">Meu Perfil</span>
-    </a>
     <a href="{{ route('pages.index') }}" id="menuButton" class="block px-4 py-2 text-gray-200 
             @if(Str::contains(Route::currentRouteName(), 'pages')) 
                 bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white 
