@@ -21,11 +21,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Middleware\RedirectByProfile;
 use App\Http\Controllers\SubscriptionController;
-use App\Models\PlanModel;
+use App\Models\PlanModel;   
 
 Route::get('/', function () {
-    return view('welcome');
+    $plans = PlanModel::where('status', 1)->get();
+    return view('welcome', compact('plans'));
 });
+
+Route::get('/astro', function () {
+    return view('astrolus');
+});
+
 
 Route::get('/lp', function () {
     $plans = PlanModel::where('status', 1)->get();

@@ -12,19 +12,19 @@
     <div id="content" class="container mx-auto px-4 py-6 hidden">
         {{-- Primeira linha de Cards --}}
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Total de Assinaturas</h3>
                 <p class="text-3xl font-bold mt-2">{{ $totalAssinaturas }}</p>
             </div>
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Assinaturas Ativas</h3>
                 <p class="text-3xl font-bold mt-2">{{ $assinaturasAtivas }}</p>
             </div>
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Assinaturas Canceladas</h3>
                 <p class="text-3xl font-bold mt-2">{{ $assinaturasCanceladas }}</p>
             </div>
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Receita Total</h3>
                 <p class="text-3xl font-bold mt-2">R$ {{ number_format($receitaTotal, 2, ',', '.') }}</p>
             </div>
@@ -36,7 +36,7 @@
                 <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200">Assinaturas por Período</h3>
                 <canvas id="assinaturasChart"></canvas>
             </div>
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Faturamento Diário</h3>
                 <p class="text-3xl font-bold mt-2">R$ {{ number_format($faturamentoDiario, 2, ',', '.') }}</p>
             </div>
@@ -44,11 +44,11 @@
 
         {{-- Última linha de cards de faturamento --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Faturamento Mensal</h3>
                 <p class="text-3xl font-bold mt-2">R$ {{ number_format($faturamentoMensal, 2, ',', '.') }}</p>
             </div>
-            <div class="bg-gradient-to-r from-[#CC54F4] to-[#AB66FF] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
+            <div class="bg-gradient-to-r from-[#CC54F4] to-[#000] text-white p-6 rounded-lg shadow-md flex flex-col items-center">
                 <h3 class="text-lg font-medium">Faturamento Total</h3>
                 <p class="text-3xl font-bold mt-2">R$ {{ number_format($receitaTotal, 2, ',', '.') }}</p>
             </div>
