@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Page;
 use App\Models\PageModel;
+use App\Models\PlanModel;
 
 class ResolveSubdomain
 {
@@ -25,7 +26,8 @@ class ResolveSubdomain
             if ($page) {
                 $request->attributes->set('page', $page);
             } else {
-                return redirect('/');
+                $plans = PlanModel::where('status', 1)->get();
+                return view('welcome', compact('plans'));   
             }
         }
 
