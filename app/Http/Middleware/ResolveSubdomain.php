@@ -27,6 +27,7 @@ class ResolveSubdomain
 
         // Se subdomínio estiver definido, verifica nome e ID de página
         if ($subdomain) {
+            dd($subdomain);
             $pageInfo = explode('-', $subdomain); // Exemplo esperado: "nomepagina-123"
             if (count($pageInfo) === 2) {
                 [$pageName, $pageId] = $pageInfo;
