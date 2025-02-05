@@ -16,11 +16,6 @@ class ResolveSubdomain
     {
         $host = $request->getHost();
 
-        // Ignora verificação para domínios copywave.io
-        if (strpos($host, 'copywave.io') !== false) {
-            return $next($request);
-        }
-    
         // Extrai subdomínio do host
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
