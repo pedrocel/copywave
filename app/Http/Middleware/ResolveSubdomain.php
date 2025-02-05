@@ -16,20 +16,22 @@ class ResolveSubdomain
     {
         $host = $request->getHost();
 
+        // Ignora verificação para domínios copywave.io
         if (strpos($host, 'copywave.io') !== false) {
             return $next($request);
         }
     
+        // Extrai subdomínio do host
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
     
         // Formato esperado: nomepagina-uuid
         if ($subdomain && preg_match('/^(.+)-([a-f0-9\-]{36})$/', $subdomain, $matches)) {
             $pageName = $matches[1];
-            $pageId = $matches[2];
+            $pageId = $matches[2]; // UUID usado como `id`
     
-            // Busca pela página correspondente ao nome e UUID
-            $page = PageModel::where('name', $pageName)->where('uuid', $pageId)->first();
+            // Busca pela página correspondente ao nome e UUID no campo `id`
+            $page = PageModel::where('name', $pageName)->where('id', $pageId)->first();
     
             if ($page) {
                 $request->attributes->set('page', $page);
@@ -37,6 +39,7 @@ class ResolveSubdomain
             }
         }
     
+        // Verifica se o domínio está registrado
         $domain = DomainModel::where('domain', $host)->first();
     
         if ($domain) {
@@ -48,7 +51,7 @@ class ResolveSubdomain
             }
         }
     
-        // View padrão com planos caso nenhuma correspondência seja encontrada
+        // Exibe os planos ativos caso nenhuma página corresponda
         $plans = PlanModel::where('status', 1)->get();
         return response()->view('welcome', compact('plans'));
     }
