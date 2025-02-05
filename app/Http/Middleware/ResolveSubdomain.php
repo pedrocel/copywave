@@ -14,14 +14,12 @@ class ResolveSubdomain
 {
     public function handle(Request $request, Closure $next)
     {
-        $$host = $request->getHost();
+        $host = $request->getHost();
 
-        // Verifica se o domínio é copywave.io
         if (strpos($host, 'copywave.io') !== false) {
             return $next($request);
         }
     
-        // Extrai subdomínio
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
     
@@ -39,7 +37,6 @@ class ResolveSubdomain
             }
         }
     
-        // Verificação para domínios adicionais
         $domain = DomainModel::where('domain', $host)->first();
     
         if ($domain) {
