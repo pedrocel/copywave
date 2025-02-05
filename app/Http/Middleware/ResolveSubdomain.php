@@ -14,52 +14,45 @@ class ResolveSubdomain
 {
     public function handle(Request $request, Closure $next)
     {
-        $host = $request->getHost();
-        $parts = explode('.', $host);
-        $subdomain = count($parts) > 2 ? $parts[0] : null;
+        $$host = $request->getHost();
 
-        $plans = PlanModel::where('status', 1)->get();
-
-        // Ignora lógica para o domínio específico "copywave.io"
-        if ($host === 'copywave.io') {
+        // Verifica se o domínio é copywave.io
+        if (strpos($host, 'copywave.io') !== false) {
             return $next($request);
         }
-
-        // Se subdomínio estiver definido, verifica nome e ID de página
-        if ($subdomain) {
-            
-            $pageInfo = explode('-', $subdomain); // Exemplo esperado: "nomepagina-123"
-
-            dd($pageInfo);  
-            if (count($pageInfo) === 2) {
-                [$pageName, $pageId] = $pageInfo;
-
-                // Verificar se a página existe com o nome e ID
-                $page = PageModel::where('id', $pageId)
-                    ->where('name', $pageName)
-                    ->first();
-
-                if ($page) {
-                    $request->attributes->set('page', $page);
-                    return $next($request);
-                }
-            }
-
-            return response()->view('welcome', compact('plans'));
-        }
-
-        // Verificação do domínio registrado
-        $domain = DomainModel::where('domain', $host)->first();
-
-        if ($domain) {
-            $page = PageModel::where('domain_id', $domain->id)->first();
-
+    
+        // Extrai subdomínio
+        $subdomainParts = explode('.', $host);
+        $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
+    
+        // Formato esperado: nomepagina-uuid
+        if ($subdomain && preg_match('/^(.+)-([a-f0-9\-]{36})$/', $subdomain, $matches)) {
+            $pageName = $matches[1];
+            $pageId = $matches[2];
+    
+            // Busca pela página correspondente ao nome e UUID
+            $page = PageModel::where('name', $pageName)->where('uuid', $pageId)->first();
+    
             if ($page) {
                 $request->attributes->set('page', $page);
-                return $next($request);
+                return response()->view('page_view', compact('page'));
             }
         }
-
+    
+        // Verificação para domínios adicionais
+        $domain = DomainModel::where('domain', $host)->first();
+    
+        if ($domain) {
+            $page = PageModel::where('domain_id', $domain->id)->first();
+    
+            if ($page) {
+                $request->attributes->set('page', $page);
+                return response()->view('page_view', compact('page'));
+            }
+        }
+    
+        // View padrão com planos caso nenhuma correspondência seja encontrada
+        $plans = PlanModel::where('status', 1)->get();
         return response()->view('welcome', compact('plans'));
     }
     
