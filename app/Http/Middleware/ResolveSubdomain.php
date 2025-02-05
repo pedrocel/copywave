@@ -17,7 +17,10 @@ class ResolveSubdomain
         $host = $request->getHost();
         $subdomain = explode('.', $host)[0];
 
-        dd($host);
+        $domain = DomainModel::where('domain', $host)->first();
+
+        dd($domain);
+
         // Obtém todos os planos ativos
         $plans = PlanModel::where('status', 1)->get();
     
