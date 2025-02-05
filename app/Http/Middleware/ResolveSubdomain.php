@@ -30,7 +30,7 @@ class ResolveSubdomain
     
             if ($page) {
                 $request->attributes->set('page', $page);
-                return response()->view('page_view', compact('page'));
+                return $next($request);
             }
         }
     
