@@ -316,22 +316,5 @@ Landwind
 </footer>
 
 </body>
-<script>
-    // Menu Mobile Toggle
-    document.getElementById('hamburger').addEventListener('click', function() {
-      const mobileMenu = document.getElementById('mobileMenu');
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
-   <script>
-    document.getElementById('accept-cookies').addEventListener('click', () => {
-      document.getElementById('cookie-banner').classList.add('hidden');
-      alert('Cookies aceitos.');
-    });
 
-    document.getElementById('decline-cookies').addEventListener('click', () => {
-      document.getElementById('cookie-banner').classList.add('hidden');
-      alert('Cookies rejeitados.');
-    });
-  </script>
 </html>

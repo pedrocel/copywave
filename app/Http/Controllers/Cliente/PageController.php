@@ -125,9 +125,7 @@ class PageController extends Controller
 
         $linkedDomainIds = PageModel::pluck('domain_id')->toArray();
 
-        $domains = DomainModel::where('user_id', Auth::user()->id)
-                            ->whereNotIn('id', $linkedDomainIds) 
-                            ->get();
+        $domains = DomainModel::where('user_id', Auth::user()->id)->get();
 
         $hasCname = false;
         if ($page->domain) {
