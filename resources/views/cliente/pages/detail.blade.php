@@ -126,7 +126,7 @@
                 <p class="text-gray-800 dark:text-gray-200">
                     <strong>Tipo do registro:</strong> CNAME - 
                     <strong>Nome:</strong> <span class="text-blue-500">@</span> -
-                    <strong>Valor:</strong> <span class="text-blue-500">{{ $page->name }}.copywave.io</span>
+                    <strong>Valor:</strong> <span class="text-blue-500">{{ $page->name.$page->id }}.copywave.io</span>
                 </p>
             </div>
 
