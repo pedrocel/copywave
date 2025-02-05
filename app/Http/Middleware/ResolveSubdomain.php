@@ -15,7 +15,7 @@ class ResolveSubdomain
     public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
-        $subdomain = explode('.', $host)[0];
+        $subdomain = explode('.', $host)[1];
 
         $domain = DomainModel::where('domain', $host)->first();
 
