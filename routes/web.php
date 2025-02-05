@@ -29,6 +29,17 @@ Route::get('/astro', function () {
     return view('astrolus');
 });
 
+Route::get('/termos', function () {
+    return view('terms');
+});
+
+Route::get('/privacidade', function () {
+    return view('privacy');
+});
+
+Route::get('/cookies', function () {
+    return view('cookies');
+});
 
 Route::get('/lp', function () {
     $plans = PlanModel::where('status', 1)->get();

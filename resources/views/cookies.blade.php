@@ -13,7 +13,6 @@
   </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
-
 <!-- component -->
 <header class="fixed w-full">
   <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
@@ -69,147 +68,102 @@
   </nav>
 </header>
 
-
-<section class="bg-white dark:bg-gray-900">
-	<div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-		<div class="mr-auto place-self-center lg:col-span-7">
-			<h1
-				class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
-				Clone. Personalize. Domine. Venda. Repita.</h1>
-				<p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Com o Copywave, você ganha tempo, autonomia e resultados. Clonar páginas nunca foi tão fácil e vantajoso. Experimente agora e veja a diferença no seu faturamento! <a
-						href="#" target="_blank" class="hover:underline">Tailwind CSS</a> and based on the
-					components from the <a href="#/"
-						class="hover:underline" target="_blank">Flowbite Library</a> and the <a href="https://flowbite.com/blocks/" target="_blank"
-						class="hover:underline" target="_blank">Blocks System</a>.</p>
-				<div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-					<a href="https://github.com/themesberg/landwind" target="_blank"
-						class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">
-					 Quero escalar minhas ofertas
-					</a>
-				</div>
-		</div>
-		<div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-			<img src="https://demo.themesberg.com/landwind/images/hero.png" alt="hero image">
-</div>
-		</div>
-</section>
-
-
-
 <section class="bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-        <!-- Primeira seção -->
-        <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Clone. Personalize. Domine. Venda. Repita.</h2>
-                <p class="mb-8 font-light lg:text-xl">Com o **Copywave**, clonar páginas de vendas, captura ou webinar nunca foi tão fácil. Basta inserir o link da página desejada, e nossa plataforma faz o resto. Em segundos, você terá uma réplica exata, pronta para ser personalizada e acessada através do seu próprio domínio.</p>
+        <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+            <div class="items-center gap-12 lg:grid xl:gap-16">
+                <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+                    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Política de Cookies – COPYWAVE TECNOLOGIA</h2>
+                    <section>
+                        <h2>1. Introdução</h2>
+                        <p>Bem-vindo à COPYWAVE TECNOLOGIA, CNPJ/MF sob o n° 58.954.044/0001-30. Esta Política de Cookies explica como utilizamos cookies e tecnologias semelhantes em nosso site para aprimorar sua experiência e garantir seu funcionamento adequado.</p>
+                        <p>A COPYWAVE TECNOLOGIA valoriza a privacidade e a transparência no tratamento de dados pessoais. Esta Política de Cookies explica como utilizamos cookies e tecnologias similares em nosso site para melhorar a experiência do usuário, conforme previsto na Lei Geral de Proteção de Dados Pessoais (LGPD &ndash; Lei nº 13.709/2018).</p>
+                        <p>Ao acessar nosso site pela primeira vez, você terá a opção de aceitar, recusar ou personalizar o uso de cookies por meio do nosso Gerenciador de Preferências de Cookies.</p>
+                    </section>
+                    
+                    <section>
+                        <h2>2. O que são Cookies?</h2>
+                        <p>Cookies são pequenos arquivos armazenados em seu navegador quando você visita um site. Eles podem ser classificados em:</p>
+                        <ul>
+                            <li><strong>Cookies de Sessão:</strong> Apagados automaticamente ao fechar o navegador.</li>
+                            <li><strong>Cookies Persistentes:</strong> Permanecem no dispositivo por um período determinado.</li>
+                            <li><strong>Cookies de Terceiros:</strong> Inseridos por serviços externos, como Google Analytics e Facebook Pixel.</li>
+                        </ul>
+                    </section>
 
-                <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Clonagem instantânea com um clique</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Domínio próprio para mais credibilidade</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Ideal para afiliados e produtores</span>
-                    </li>
-                </ul>
-                <p class="mb-8 font-light lg:text-xl">Aumente suas conversões, simplifique suas campanhas e ganhe mais autonomia com o **Copywave**. Experimente agora e transforme sua estratégia de vendas!</p>
+                    <section>
+                        <h2>3. Como Utilizamos os Cookies?</h2>
+                        <p>Os cookies utilizados em nossa plataforma podem ser classificados da seguinte forma:</p>
+                        
+                        <h3>3.1 Cookies Essenciais (Obrigatórios)</h3>
+                        <p>Necessários para o funcionamento adequado do site, permitindo a navegação e o uso dos recursos principais. Não podem ser desativados. Incluem funcionalidades como:</p>
+                        <ul>
+                            <li>Autenticação de usuários logados.</li>
+                            <li>Segurança e prevenção contra fraudes.</li>
+                            <li>Manutenção de preferências essenciais, como idioma.</li>
+                        </ul>
+
+                        <h3>3.2 Cookies de Desempenho e Análise</h3>
+                        <p>Nos ajudam a entender como os usuários interagem com o site, contribuindo para melhorar seu funcionamento e aprimorar a experiência. São coletados de forma anônima. Exemplos:</p>
+                        <ul>
+                            <li>Google Analytics &ndash; analisa visitas e padrões de navegação.</li>
+                            <li>Hotjar &ndash; mapeia interações do usuário para melhorar o design da página.</li>
+                        </ul>
+
+                        <h3>3.3 Cookies Funcionais</h3>
+                        <p>Permitem uma experiência personalizada, armazenando preferências e configurações. Exemplos:</p>
+                        <ul>
+                            <li>Preenchimento automático de formulários.</li>
+                            <li>Preferências de idioma e layout.</li>
+                        </ul>
+
+                        <h3>3.4 Cookies de Publicidade e Afiliados</h3>
+                        <p>Utilizados para fornecer anúncios relevantes e rastrear comissões de afiliados. Exemplos:</p>
+                        <ul>
+                            <li>Facebook Pixel &ndash; rastreamento de interações com anúncios.</li>
+                            <li>Google Ads &ndash; exibição de anúncios personalizados.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>4. Como Gerenciar seus Cookies?</h2>
+                        <p>Você pode aceitar, rejeitar ou personalizar o uso de cookies através do nosso Gerenciador de Preferências de Cookies disponível no site.</p>
+                        <p>Além disso, é possível configurar ou desativar cookies diretamente no seu navegador. Alguns exemplos:</p>
+                        <ul>
+                            <li>Configurações do Google Chrome</li>
+                            <li>Gerenciamento no Mozilla Firefox</li>
+                            <li>Configurações no Safari</li>
+                            <li>Política no Microsoft Edge</li>
+                        </ul>
+                        <p><strong>Atenção:</strong> A desativação de certos cookies pode impactar significativamente a funcionalidade da plataforma.</p>
+                    </section>
+
+                    <section>
+                        <h2>5. Cookies de Terceiros</h2>
+                        <p>Podemos permitir que terceiros, como parceiros e prestadores de serviço, utilizem cookies em nosso site para análise de tráfego, personalização de anúncios e outras finalidades. Esses cookies são gerenciados por terceiros e estão sujeitos às respectivas políticas de privacidade.</p>
+                        <p>Os principais serviços de terceiros que utilizamos incluem:</p>
+                        <ul>
+                            <li>Google Analytics: Para coleta de estatísticas e análise de tráfego.</li>
+                            <li>Google Ads e Facebook Ads: Para personalização e veiculação de anúncios.</li>
+                            <li>Ferramentas de Automação de Marketing: Para otimização da comunicação com nossos usuários.</li>
+                        </ul>
+                        <p>Caso deseje gerenciar cookies de terceiros, acesse a <a href="https://www.networkadvertising.org/" target="_blank">Network Advertising Initiative</a>.</p>
+                    </section>
+
+                    <section>
+                        <h2>6. Atualizações desta Política</h2>
+                        <p>Esta política pode ser atualizada periodicamente para refletir mudanças na legislação ou em nossos serviços. Recomendamos a revisão regular desta página.</p>
+                        <p><strong>Primeira Atualização:</strong> 02/02/2025</p>
+                        <p><strong>Última Atualização:</strong> 02/02/2025</p>
+                    </section>
+
+                    <section>
+                        <h2>7. Contato</h2>
+                        <p>Para dúvidas ou solicitações sobre privacidade e proteção de dados, entre em contato pelo e-mail:</p>
+                    </section>
+                </div>
             </div>
-            <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="https://demo.themesberg.com/landwind/images/feature-1.png" alt="Clone páginas com Copywave">
         </div>
-
-        <!-- Segunda seção -->
-        <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="https://demo.themesberg.com/landwind/images/feature-2.png" alt="Benefícios do Copywave">
-            <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Potencialize suas vendas com o Copywave</h2>
-                <p class="mb-8 font-light lg:text-xl">Seja você um afiliado ou produtor, o **Copywave** é a ferramenta que você precisa para escalar seus resultados. Clonar páginas nunca foi tão rápido, seguro e eficiente.</p>
-
-                <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Autonomia total para afiliados</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Proteção e controle para produtores</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Sem limites de clonagem</span>
-                    </li>
-                </ul>
-                <p class="font-light lg:text-xl">Com o **Copywave**, você ganha tempo, aumenta suas conversões e domina o mercado. Experimente agora e veja a diferença!</p>
-            </div>
-        </div>
-    </div>
 </section>
-
-
-
-<section class="bg-white dark:bg-gray-900">
-    <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
-        <div class="max-w-screen-md mx-auto mb-8 text-center lg:mb-12">
-            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Designed for business
-                teams like yours</h2>
-            <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Here at Landwind we focus on markets
-                where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
-        </div>
-        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-        @php
-    $plans = \App\Models\PlanModel::where('status', 1)->get();
-      @endphp
-
-      @foreach($plans as $plan)
-          <div class="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 class="mb-4 text-2xl font-semibold">{{ $plan->name }}</h3>
-              <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">{{ $plan->description }}</p>
-              <div class="flex items-baseline justify-center my-8">
-                  <span class="mr-2 text-5xl font-extrabold">R${{ number_format($plan->value, 2, ',', '.') }}</span>
-                  <span class="text-gray-500 dark:text-gray-400">/mês</span>
-              </div>
-
-              <a href="{{ $plan->link_checkout_external }}"
-                  class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-purple-900">
-                  Assinar Agora
-              </a>
-          </div>
-      @endforeach
-
-        </div>
-    </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 bg-white p-4 shadow-lg rounded-2xl md:max-w-3xl mx-auto border border-gray-200">
@@ -232,6 +186,8 @@
       </div>
     </div>
   </div>
+
+
 <footer class="bg-white dark:bg-gray-800">
 	<div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
 		<div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
@@ -372,20 +328,8 @@ Landwind
 		</div>
 	</div>
 </footer>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8">
-    <div class="container mx-auto text-center">
-      <p class="mb-4">© 2024 CopyWave. Todos os direitos reservados.</p>
-      <div class="flex justify-center space-x-4">
-        <a href="/termos" class="hover:text-[#CC54F4] transition">Termos de Uso</a>
-        <a href="/privacidade" class="hover:text-[#CC54F4] transition">Política de Privacidade</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+</body>
+<script>
     // Menu Mobile Toggle
     document.getElementById('hamburger').addEventListener('click', function() {
       const mobileMenu = document.getElementById('mobileMenu');
@@ -403,5 +347,4 @@ Landwind
       alert('Cookies rejeitados.');
     });
   </script>
-</body>
 </html>

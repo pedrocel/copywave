@@ -13,7 +13,6 @@
   </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
-
 <!-- component -->
 <header class="fixed w-full">
   <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
@@ -69,148 +68,89 @@
   </nav>
 </header>
 
-
-<section class="bg-white dark:bg-gray-900">
-	<div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-		<div class="mr-auto place-self-center lg:col-span-7">
-			<h1
-				class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
-				Clone. Personalize. Domine. Venda. Repita.</h1>
-				<p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Com o Copywave, você ganha tempo, autonomia e resultados. Clonar páginas nunca foi tão fácil e vantajoso. Experimente agora e veja a diferença no seu faturamento! <a
-						href="#" target="_blank" class="hover:underline">Tailwind CSS</a> and based on the
-					components from the <a href="#/"
-						class="hover:underline" target="_blank">Flowbite Library</a> and the <a href="https://flowbite.com/blocks/" target="_blank"
-						class="hover:underline" target="_blank">Blocks System</a>.</p>
-				<div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-					<a href="https://github.com/themesberg/landwind" target="_blank"
-						class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">
-					 Quero escalar minhas ofertas
-					</a>
-				</div>
-		</div>
-		<div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-			<img src="https://demo.themesberg.com/landwind/images/hero.png" alt="hero image">
-</div>
-		</div>
-</section>
-
-
-
 <section class="bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-        <!-- Primeira seção -->
-        <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Clone. Personalize. Domine. Venda. Repita.</h2>
-                <p class="mb-8 font-light lg:text-xl">Com o **Copywave**, clonar páginas de vendas, captura ou webinar nunca foi tão fácil. Basta inserir o link da página desejada, e nossa plataforma faz o resto. Em segundos, você terá uma réplica exata, pronta para ser personalizada e acessada através do seu próprio domínio.</p>
+        <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+            <div class="items-center gap-12 lg:grid xl:gap-16">
+                <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+                    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">POLÍTICA DE PRIVACIDADE COPYWAVE TECNOLOGIA</h2>
+                    <section>
+                        <h2>1. Informações Gerais</h2>
+                        <p>A Política de Privacidade em vigor fornece detalhes sobre a coleta, utilização, armazenamento, processamento e segurança dos dados pessoais de usuários e visitantes da COPYWAVE TECNOLOGIA. Seu objetivo é garantir total transparência sobre o tema, esclarecendo quais tipos de dados são encontrados, por que são encontrados e como os usuários podem solicitar a exclusão de suas informações pessoais junto à COPYWAVE TECNOLOGIA.</p>
+                        <p>Esta Política se aplica a todos os usuários e visitantes da COPYWAVE TECNOLOGIA e integra os Termos e Condições Gerais de Uso da empresa, registrada sob o CNPJ 58.954.044/0001-30, com sede na Rua Valdizar Saldanha Fontenele, 42, Bairro Lagoa Redonda, Fortaleza - CE, CEP: 60.831-460. Suas diretrizes abrangem software, site, conteúdos e demais ativos vinculados à plataforma COPYWAVE TECNOLOGIA.</p>
+                        <p>O documento foi elaborado em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei 13.709/18), o Marco Civil da Internet (Lei 12.965/14) e o Regulamento da UE n.º 2016/679. Além disso, poderá ser atualizado em razão de novas normas, recomendando-se que os usuários revisem esta seção periodicamente.</p>
+                    </section>
 
-                <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Clonagem instantânea com um clique</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Domínio próprio para mais credibilidade</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Ideal para afiliados e produtores</span>
-                    </li>
-                </ul>
-                <p class="mb-8 font-light lg:text-xl">Aumente suas conversões, simplifique suas campanhas e ganhe mais autonomia com o **Copywave**. Experimente agora e transforme sua estratégia de vendas!</p>
+                    <section>
+                        <h2>2. Recolhimento dos Dados Pessoais do Usuário e do Visitante</h2>
+                        <p>Os dados pessoais dos usuários e visitantes são obtidos pela plataforma da seguinte maneira:</p>
+                        <ul>
+                            <li>Ao criar uma conta ou perfil na COPYWAVE TECNOLOGIA, são coletados dados de identificação básicos, como nome, sobrenome, e-mail, CPF e telefone.</li>
+                            <li>Ao acessar o site, a empresa coleta informações sobre interações e acessos, incluindo palavras-chave utilizadas, compartilhamentos de documentos, comentários, visualizações de páginas e perfis, URL de origem, navegador e IPs.</li>
+                            <li>Dados de terceiros, como Facebook e Google, são coletados mediante autorização dos usuários.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>3. Dados Pessoais Recolhidos</h2>
+                        <ul>
+                            <li>Dados para criação de conta/perfil: Nome, Sobrenome, E-mail, CPF e Telefone.</li>
+                            <li>Dados para otimização da navegação: Informações sobre acesso, endereço IP e Cookies.</li>
+                            <li>Dados para realizar transações: Dados de pagamento, como número do cartão de crédito.</li>
+                            <li>Newsletter: E-mail do visitante que optar por se inscrever.</li>
+                            <li>Dados sensíveis: Não são coletados.</li>
+                            <li>Dados relacionados a contratos: Comunicações trocadas entre a empresa e o usuário.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>4. Finalidade dos Dados Pessoais</h2>
+                        <ul>
+                            <li>Bem-estar do usuário e visitante.</li>
+                            <li>Melhorias da plataforma.</li>
+                            <li>Anúncios personalizados.</li>
+                            <li>Personalização de conteúdo.</li>
+                            <li>Segurança jurídica.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>5. Transferência de Dados</h2>
+                        <p>Os dados pessoais não serão compartilhados com terceiros. Em relação a fornecedores terceirizados, cada um possui sua própria política de privacidade.</p>
+                    </section>
+
+                    <section>
+                        <h2>6. Tempo de Armazenamento dos Dados</h2>
+                        <p>Os dados pessoais serão armazenados conforme disposições legais e podem ser removidos ou anonimizados a pedido do usuário.</p>
+                    </section>
+
+                    <section>
+                        <h2>7. Segurança dos Dados Pessoais</h2>
+                        <p>A COPYWAVE TECNOLOGIA adota medidas para proteger os dados pessoais contra acessos não autorizados, com criptografia SSL para informações sensíveis.</p>
+                    </section>
+
+                    <section>
+                        <h2>8. Cookies e Dados de Navegação</h2>
+                        <p>Os cookies armazenam informações de navegação para personalizar os serviços oferecidos. O usuário pode configurar o navegador para recusar cookies.</p>
+                    </section>
+
+                    <section>
+                        <h2>9. Consentimento</h2>
+                        <p>Ao utilizar a plataforma, o usuário concorda com esta Política de Privacidade e pode revogar seu consentimento a qualquer momento.</p>
+                    </section>
+
+                    <section>
+                        <h2>10. Alterações da Política de Privacidade</h2>
+                        <p>A COPYWAVE TECNOLOGIA reserva-se o direito de alterar esta Política de Privacidade a qualquer momento.</p>
+                    </section>
+
+                    <section>
+                        <h2>11. Jurisdição para Resolução de Conflitos</h2>
+                        <p>Para a solução de controvérsias, aplica-se o Direito brasileiro, com foro na comarca de Balneário Camboriú – SC.</p>
+                    </section>
+                </div>
             </div>
-            <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="https://demo.themesberg.com/landwind/images/feature-1.png" alt="Clone páginas com Copywave">
         </div>
-
-        <!-- Segunda seção -->
-        <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="https://demo.themesberg.com/landwind/images/feature-2.png" alt="Benefícios do Copywave">
-            <div class="text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Potencialize suas vendas com o Copywave</h2>
-                <p class="mb-8 font-light lg:text-xl">Seja você um afiliado ou produtor, o **Copywave** é a ferramenta que você precisa para escalar seus resultados. Clonar páginas nunca foi tão rápido, seguro e eficiente.</p>
-
-                <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Autonomia total para afiliados</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Proteção e controle para produtores</span>
-                    </li>
-                    <li class="flex space-x-3">
-                        <svg class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">Sem limites de clonagem</span>
-                    </li>
-                </ul>
-                <p class="font-light lg:text-xl">Com o **Copywave**, você ganha tempo, aumenta suas conversões e domina o mercado. Experimente agora e veja a diferença!</p>
-            </div>
-        </div>
-    </div>
 </section>
-
-
-
-<section class="bg-white dark:bg-gray-900">
-    <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-24 lg:px-6">
-        <div class="max-w-screen-md mx-auto mb-8 text-center lg:mb-12">
-            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Designed for business
-                teams like yours</h2>
-            <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Here at Landwind we focus on markets
-                where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
-        </div>
-        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-        @php
-    $plans = \App\Models\PlanModel::where('status', 1)->get();
-      @endphp
-
-      @foreach($plans as $plan)
-          <div class="flex flex-col max-w-lg p-6 mx-auto text-center text-gray-900 bg-white border border-gray-100 rounded-lg shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 class="mb-4 text-2xl font-semibold">{{ $plan->name }}</h3>
-              <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">{{ $plan->description }}</p>
-              <div class="flex items-baseline justify-center my-8">
-                  <span class="mr-2 text-5xl font-extrabold">R${{ number_format($plan->value, 2, ',', '.') }}</span>
-                  <span class="text-gray-500 dark:text-gray-400">/mês</span>
-              </div>
-
-              <a href="{{ $plan->link_checkout_external }}"
-                  class="text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white dark:focus:ring-purple-900">
-                  Assinar Agora
-              </a>
-          </div>
-      @endforeach
-
-        </div>
-    </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 bg-white p-4 shadow-lg rounded-2xl md:max-w-3xl mx-auto border border-gray-200">
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -232,6 +172,8 @@
       </div>
     </div>
   </div>
+
+
 <footer class="bg-white dark:bg-gray-800">
 	<div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
 		<div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
@@ -372,20 +314,9 @@ Landwind
 		</div>
 	</div>
 </footer>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8">
-    <div class="container mx-auto text-center">
-      <p class="mb-4">© 2024 CopyWave. Todos os direitos reservados.</p>
-      <div class="flex justify-center space-x-4">
-        <a href="/termos" class="hover:text-[#CC54F4] transition">Termos de Uso</a>
-        <a href="/privacidade" class="hover:text-[#CC54F4] transition">Política de Privacidade</a>
-      </div>
-    </div>
-  </footer>
 
-  <script>
+</body>
+<script>
     // Menu Mobile Toggle
     document.getElementById('hamburger').addEventListener('click', function() {
       const mobileMenu = document.getElementById('mobileMenu');
@@ -403,5 +334,4 @@ Landwind
       alert('Cookies rejeitados.');
     });
   </script>
-</body>
 </html>
