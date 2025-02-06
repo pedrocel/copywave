@@ -20,6 +20,8 @@ class ResolveSubdomain
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
 
+        dd($host);
+
         // Ignora o domínio principal
         if ($host === 'copywave.io') {
             return $next($request);
