@@ -15,12 +15,13 @@ class ResolveSubdomain
     public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
-
+        if (str_starts_with($host, 'www.')) {
+          $host = substr($host, 4);
+        }
         // Extrai subdomínio do host
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
 
-        dd($host);
 
         // Ignora o domínio principal
         if ($host === 'copywave.io') {
