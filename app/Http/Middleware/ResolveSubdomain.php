@@ -15,6 +15,8 @@ class ResolveSubdomain
     {
         $host = $request->getHost();
 
+        dd($host);
+
         // Remove "www." caso exista
         if (str_starts_with($host, 'www.')) {
             $host = substr($host, 4);

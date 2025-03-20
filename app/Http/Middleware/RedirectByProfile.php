@@ -16,6 +16,7 @@ class RedirectByProfile
      */
     public function handle(Request $request, Closure $next)
     {
+        
         $user = $request->user();
         
         if (!$user) {
