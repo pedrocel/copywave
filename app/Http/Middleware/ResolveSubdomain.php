@@ -15,8 +15,6 @@ class ResolveSubdomain
     {
         $host = $request->getHost();
 
-        dd($host);
-
         // Remove "www." caso exista
         if (str_starts_with($host, 'www.')) {
             $host = substr($host, 4);
@@ -26,6 +24,10 @@ class ResolveSubdomain
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 2 ? $subdomainParts[0] : null;
 
+        if ($host === 'copywave.com.br') {
+            return response()->view('welcome'); // ou uma página de teste
+        }
+        
         if ($host === 'copywave.com.br') {
             return $next($request);
         }
