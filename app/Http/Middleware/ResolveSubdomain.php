@@ -25,8 +25,6 @@ class ResolveSubdomain
         $subdomain = count($subdomainParts) > 2 ? $subdomainParts[0] : null;
 
         if ($host === 'copywave.com.br') {
-            
-            dd($next($request));
             return $next($request);
         }
 
