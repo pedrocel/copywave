@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Middleware;
 
 use App\Models\DomainModel;
@@ -15,20 +14,20 @@ class ResolveSubdomain
     public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
+
+        // Remove "www." caso exista
         if (str_starts_with($host, 'www.')) {
-          $host = substr($host, 4);
+            $host = substr($host, 4);
         }
+
         // Extrai subdomínio do host
         $subdomainParts = explode('.', $host);
-        $subdomain = count($subdomainParts) > 1 ? $subdomainParts[0] : null;
+        $subdomain = count($subdomainParts) > 2 ? $subdomainParts[0] : null;
 
-
-        // Ignora o domínio principal
         if ($host === 'copywave.com.br') {
             return $next($request);
         }
 
-        // Verifica se o subdomínio segue o formato nomepagina-uuid
         if ($subdomain && preg_match('/^(.+)-([a-f0-9\-]{36})$/', $subdomain, $matches)) {
             $pageName = $matches[1];
             $pageId = $matches[2];
@@ -42,7 +41,15 @@ class ResolveSubdomain
             }
         }
 
-        // Verifica se o domínio existe
+        if ($subdomain) {
+            $page = PageModel::where('name', $subdomain)->first();
+
+            if ($page) {
+                $request->attributes->set('page', $page);
+                return response()->view('pages.preview', ['content' => $page['content']]);
+            }
+        }
+
         $domain = DomainModel::where('domain', $host)->first();
 
         if ($domain) {
@@ -54,7 +61,6 @@ class ResolveSubdomain
             }
         }
 
-        // Fallback: Exibe os planos ativos caso nenhuma correspondência seja encontrada
         $plans = PlanModel::where('status', 1)->get();
         return response()->view('welcome', compact('plans'));
     }
