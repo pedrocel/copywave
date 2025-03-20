@@ -44,7 +44,7 @@ class ResolveSubdomain
         if ($subdomain) {
             $page = PageModel::where('name', $subdomain)->first();
 
-            dd($page);
+        
             if ($page) {
                 $request->attributes->set('page', $page);
                 
