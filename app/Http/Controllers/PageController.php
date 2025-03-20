@@ -15,7 +15,6 @@ class PageController extends Controller
 {
     public function landingPage(){
         $plans = PlanModel::where('status', 1)->get();
-        dd($plans);
         return view('welcome', compact('plans'));   
     }
 

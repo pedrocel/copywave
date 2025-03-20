@@ -46,7 +46,7 @@ class ResolveSubdomain
 
             if ($page) {
                 $request->attributes->set('page', $page);
-                return response()->view('pages.preview', ['content' => $page['content']]);
+                return response()->view('pages.show', ['content' => $page['content']]);
             }
         }
 
