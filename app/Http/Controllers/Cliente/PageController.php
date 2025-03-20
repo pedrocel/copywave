@@ -163,7 +163,7 @@ class PageController extends Controller
     
         foreach ($records as $record) {
             if (isset($record['target'])) {
-                if (strpos($record['target'], 'copywave.io') !== false) {
+                if (strpos($record['target'], 'copywave.com.br') !== false) {
                     return true; // O CNAME aponta para copywave.io ou um subdomínio
                 }
             }

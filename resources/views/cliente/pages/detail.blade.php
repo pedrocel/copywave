@@ -142,7 +142,7 @@
         document.getElementById('check-cname')?.addEventListener('click', function() {
             const domain = document.getElementById('domain_id').selectedOptions[0].text;
             const pageName = "{{ $page->name }}";
-            const cname = `${pageName}.copywave.io`;
+            const cname = `${pageName}.copywave.com.br`;
 
             fetch(`/check-cname?domain=${domain}&cname=${cname}`)
                 .then(response => response.json())

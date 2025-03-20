@@ -56,7 +56,7 @@ Route::middleware([ResolveSubdomain::class])->group(function () {
     Route::get('/', [PageController::class, 'show']);
 });
 
-Route::domain('{subdomain}.copywave.io')->group(function () {
+Route::domain('{subdomain}.copywave.com.br')->group(function () {
     Route::get('/', function ($subdomain) {
         return "Você acessou o subdomínio: $subdomain";
     });

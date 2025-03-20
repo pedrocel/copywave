@@ -24,7 +24,7 @@ class ResolveSubdomain
 
 
         // Ignora o domínio principal
-        if ($host === 'copywave.io') {
+        if ($host === 'copywave.com.br') {
             return $next($request);
         }
 
