@@ -808,7 +808,7 @@
           </div>
           
           <div class="p-6 mt-6">
-            <a href="#" class="w-full block text-center bg-purple-100 text-purple-900 hover:bg-purple-200 px-4 py-2 rounded-md">
+            <a href="https://pay.kiwify.com.br/vZAOcpa" class="w-full block text-center bg-purple-100 text-purple-900 hover:bg-purple-200 px-4 py-2 rounded-md">
               Começar Agora
             </a>
           </div>
@@ -864,7 +864,7 @@
           </div>
           
           <div class="p-6 mt-6">
-            <a href="#" class="w-full block text-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md">
+            <a href="https://pay.kiwify.com.br/DHUXcYF" class="w-full block text-center bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md">
               Escolher Premium
             </a>
           </div>
@@ -916,7 +916,7 @@
           </div>
           
           <div class="p-6 mt-6">
-            <a href="#" class="w-full block text-center bg-purple-100 text-purple-900 hover:bg-purple-200 px-4 py-2 rounded-md">
+            <a href="https://pay.kiwify.com.br/iGoqB0J" class="w-full block text-center bg-purple-100 text-purple-900 hover:bg-purple-200 px-4 py-2 rounded-md">
               Selecionar Plano
             </a>
           </div>

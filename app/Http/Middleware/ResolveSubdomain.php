@@ -17,8 +17,8 @@ class ResolveSubdomain
 
         // Redireciona de "copywave.com.br" para "www.copywave.com.br"
         if ($host === 'copywave.com.br') {
-            $newUrl = 'www.' . $host . $request->getRequestUri();
-            return redirect()->to($newUrl, 301); // 301 é um redirecionamento permanente
+            $newUrl = 'https://www.copywave.com.br' . $request->getRequestUri(); // URL completa
+            return redirect()->away($newUrl, 301);
         }
 
         // Remove "www." caso exista
@@ -64,6 +64,5 @@ class ResolveSubdomain
         }
 
         $plans = PlanModel::where('status', 1)->get();
-        return response()->view('welcome', compact('plans'));
-    }
+    retus
 }
