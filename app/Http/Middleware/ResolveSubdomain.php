@@ -13,8 +13,8 @@ class ResolveSubdomain
 {
     public function handle(Request $request, Closure $next)
     {
-        dd($host);
         $host = $request->getHost();
+        dd($host);
 
         // Remove "www." caso exista
         if (str_starts_with($host, 'www.')) {
