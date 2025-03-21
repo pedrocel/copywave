@@ -14,7 +14,12 @@ class ResolveSubdomain
     public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
-        dd($host);
+
+        // Redireciona de "copywave.com.br" para "www.copywave.com.br"
+        if ($host === 'copywave.com.br') {
+            $newUrl = 'www.' . $host . $request->getRequestUri();
+            return redirect()->to($newUrl, 301); // 301 é um redirecionamento permanente
+        }
 
         // Remove "www." caso exista
         if (str_starts_with($host, 'www.')) {
@@ -24,10 +29,6 @@ class ResolveSubdomain
         // Extrai subdomínio do host
         $subdomainParts = explode('.', $host);
         $subdomain = count($subdomainParts) > 2 ? $subdomainParts[0] : null;
-
-        if ($host === 'copywave.com.br') {
-            return $next($request);
-        }
 
         if ($subdomain && preg_match('/^(.+)-([a-f0-9\-]{36})$/', $subdomain, $matches)) {
             $pageName = $matches[1];
@@ -45,10 +46,8 @@ class ResolveSubdomain
         if ($subdomain) {
             $page = PageModel::where('name', $subdomain)->first();
 
-        
             if ($page) {
                 $request->attributes->set('page', $page);
-                
                 return response()->view('pages.show', ['content' => $page['content']]);
             }
         }
