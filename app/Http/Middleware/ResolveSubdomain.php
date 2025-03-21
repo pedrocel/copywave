@@ -25,7 +25,7 @@ class ResolveSubdomain
         $subdomain = count($subdomainParts) > 2 ? $subdomainParts[0] : null;
 
         if ($host === 'copywave.com.br') {
-            return $next($request);
+            return redirect()->to('https://www.copywave.com.br' . request()->getRequestUri(), 301);
         }
 
         if ($subdomain && preg_match('/^(.+)-([a-f0-9\-]{36})$/', $subdomain, $matches)) {
