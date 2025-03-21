@@ -34,7 +34,7 @@
         <a href="#how-it-works" class="text-gray-700 hover:text-primary transition">Como Funciona</a>
         <a href="#pricing" class="text-gray-700 hover:text-primary transition">Preços</a>
         <a href="#testimonials" class="text-gray-700 hover:text-primary transition">Depoimentos</a>
-        <a href="#" class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-md">Começar Agora</a>
+        <a href="{{ route('login')}}" class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-md">Login</a>
       </div>
       
       <button class="md:hidden text-gray-700" id="mobile-menu-button">
