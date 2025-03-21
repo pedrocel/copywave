@@ -64,5 +64,6 @@ class ResolveSubdomain
         }
 
         $plans = PlanModel::where('status', 1)->get();
-    retus
+    return response()->view('welcome', compact('plans'));
+    }
 }
