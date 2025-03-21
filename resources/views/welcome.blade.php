@@ -53,7 +53,7 @@
         <a href="#how-it-works" class="text-gray-700 hover:text-primary transition py-2">Como Funciona</a>
         <a href="#pricing" class="text-gray-700 hover:text-primary transition py-2">Preços</a>
         <a href="#testimonials" class="text-gray-700 hover:text-primary transition py-2">Depoimentos</a>
-        <a href="#" class="bg-primary hover:bg-opacity-90 text-white py-2 px-4 rounded-md text-center">Começar Agora</a>
+        <a href=" {{ route('login')}}" class="bg-primary hover:bg-opacity-90 text-white py-2 px-4 rounded-md text-center">Login</a>
       </div>
     </div>
   </nav>
