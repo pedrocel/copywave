@@ -13,6 +13,7 @@ class ResolveSubdomain
 {
     public function handle(Request $request, Closure $next)
     {
+        dd($host);
         $host = $request->getHost();
 
         // Remove "www." caso exista
@@ -25,7 +26,7 @@ class ResolveSubdomain
         $subdomain = count($subdomainParts) > 2 ? $subdomainParts[0] : null;
 
         if ($host === 'copywave.com.br') {
-            return redirect()->to('https://www.copywave.com.br' . request()->getRequestUri(), 301);
+            return $next($request);
         }
 
         if ($subdomain && preg_match('/^(.+)-([a-f0-9\-]{36})$/', $subdomain, $matches)) {
