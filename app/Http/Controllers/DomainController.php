@@ -24,9 +24,6 @@ class DomainController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'domain' => 'required|unique:domains,domain',
-        ]);
 
         DomainModel::create([
             'user_id' => Auth::user()->id,
