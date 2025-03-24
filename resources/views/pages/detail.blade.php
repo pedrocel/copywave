@@ -1,11 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Detalhes da Página
-        </h2>
-    </x-slot>
+@extends('admin.layout')
 
-    <div class="container mx-4">
+@section('title', 'Páginas')
+
+@section('content')
+    <header class="glass-effect border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-20">
+        <div class="flex justify-between items-center px-4 md:px-8 py-6">
+            <div class="flex items-center">
+                <button onclick="toggleSidebar()" class="md:hidden mr-4 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">Detalhes da página</h2>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="{{ route('pages.index') }}" class="theme-gradient text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:opacity-90 transition-opacity duration-150">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    <span class="hidden md:inline">Voltar</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    @if(session('success'))
+    <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    <div class="p-4 md:p-8">
         <div class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
             <div class="mb-4">
                 <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Nome</h3>
@@ -63,7 +84,7 @@
         </div>
     </div>
 
-    <div class="container mx-4">
+    <div class="p-4 md:p-8">
         <div class="mb-4"><br>
             <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Vincular Domínio</h3>
             @if ($page->domain_id)
@@ -92,7 +113,7 @@
                         </select>
                     </div>
                     <div class="flex justify-end">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300">
+                        <button type="submit" class="theme-gradient text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:opacity-90 transition-opacity duration-150">
                             Salvar
                         </button>
                     </div>
@@ -133,4 +154,4 @@
                 });
         });
     </script>
-</x-app-layout>
+@endsection

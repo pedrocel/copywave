@@ -7,6 +7,7 @@ use App\Http\Controllers\Cliente\DashboardController as ClienteDashboardControll
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProductController as ProductLibraryController;
 use App\Http\Controllers\Admin\StoreController;
+use App\Http\Controllers\Admin\SubscriptionController as AdminSubscriptionController;
 use App\Http\Controllers\ControllerController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\GroupController;
@@ -146,6 +147,10 @@ Route::middleware(['auth', RedirectByProfile::class])->prefix('admin')->group(fu
         Route::delete('{plan}', [PlanController::class, 'destroy'])->name('admin.plans.destroy');
         // Route::get('/criar', [CategoryController::class, 'create'])->name('admin.categories.create');
         // Route::post('/', [CategoryController::class, 'store'])->name('admin.categories.store');
+    });
+
+    Route::prefix('subscription')->group(function () {
+        Route::get('/', [AdminSubscriptionController::class, 'index'])->name('admin.subscriptions.index');
     });
 
     Route::get('product/detail/{id}', [ProductLibraryController::class, 'detail'])->name('admin.products.detail');

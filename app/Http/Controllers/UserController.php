@@ -14,7 +14,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);  // Obtém todos os usuários
-        return view('users.index', compact('users'));  // Exibe a lista de usuários
+        $perfis = PerfilModel::all();
+        return view('users.index', compact('users', 'perfis'));  // Exibe a lista de usuários
     }
 
     public function create()
@@ -70,6 +71,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();  // Exclui o usuário
-        return redirect()->route('users.index')->with('success', 'Usuário excluído com sucesso!');
+        return redirect()->route('admin.users.index')->with('success', 'Usuário excluído com sucesso!');
     }
 }

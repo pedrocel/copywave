@@ -14,7 +14,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);  // Obtém todos os usuários
-        return view('users.index', compact('users'));  // Exibe a lista de usuários
+        $perfis = PerfilModel::all();
+        return view('users.index', compact('users', 'perfis'));  // Exibe a lista de usuários
     }
 
     public function create()

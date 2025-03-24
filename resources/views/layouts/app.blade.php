@@ -1,212 +1,226 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="">
+<html lang="pt-BR" class="light">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'ArMatch') }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config('app.name', 'Copywave') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link id="favicon" rel="icon" src="/img/copywave.png" type="image/x-icon"/>
-    <!-- SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f7ff',
+                            100: '#e0efff',
+                            200: '#bae0ff',
+                            300: '#7cc7ff',
+                            400: '#36a9ff',
+                            500: '#0090ff',
+                            600: '#0070f3',
+                            700: '#0058cc',
+                            800: '#0047a6',
+                            900: '#003380',
+                        }
+                        
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide"></script>
     <style>
-        #sidebar.reduced .menu-label {
-            display: none;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
         }
-
-        #sidebar.reduced .menu-icon {
-            font-size: 24px;
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        #menuButton.reduced {
-            padding: 8px;
-            width: 50px;
-            justify-content: center;
+        .dark .glass-effect {
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        #userMenuDropdown.hidden {
-            display: none;
+        :root {
+            --primary-color: #b362fc;
+            --secondary-color: #cd53f4;
         }
-
-        #userMenuDropdown {
-            display: block;
+        .theme-purple {
+            --primary-color: #b362fc;
+            --secondary-color: #cd53f4;
         }
-
-        @media (max-width: 768px) {
-    #sidebar {
-        width: 0;
-        opacity: 0;
-    }
-
-    /* Mostrar o sidebar quando ele estiver ativo */
-    #sidebar.open {
-        width: 16rem;
-        opacity: 1;
-    }
-
-    /* Mostrar o botão de seta para expandir */
-    #expandSidebar {
-        display: block;
-    }
-
-    /* Esconder o botão de expandir quando a sidebar estiver visível */
-    #sidebar.open #expandSidebar {
-        display: none;
-    }
-}
+        .theme-blue {
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+        }
+        .theme-green {
+            --primary-color: #10b981;
+            --secondary-color: #34d399;
+        }
+        .theme-orange {
+            --primary-color: #f97316;
+            --secondary-color: #fb923c;
+        }
+        .theme-pink {
+            --primary-color: #ec4899;
+            --secondary-color: #f472b6;
+        }
+        .theme-gradient {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+        .theme-text {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
 </head>
-<body class="font-sans antialiased bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
-    <div class="flex">
-        <!-- Sidebar -->
-        <aside id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-[#252f3f] text-gray-100 flex flex-col transition-all duration-300" id="sidebarComponent">
-    <div class="flex justify-between items-center px-4 py-5 bg-[#1E1E1E]">
-        <img src="/img/copywave.png" alt="Logo" class="w-32 h-auto"> <!-- Logo -->
-    </div>
-
-    <!-- Navegação -->
-    @if(auth()->check())
-        @if(auth()->user()->adm())
-            @include('layouts.menu.adm')
-        @elseif(auth()->user()->cliente())
-            @include('layouts.menu.cliente')
-        @else
-        @endif
-    @endif
-
-    <!-- Botão para mobile -->
-    <button id="expandSidebar" class="absolute bottom-4 left-4 text-white bg-[#252f3f] p-3 rounded-full hidden md:block">
-        &#8594; <!-- Seta para expandir -->
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <!-- Theme Toggle Button (Floating) -->
+    <button 
+        onclick="toggleTheme()"
+        class="fixed bottom-4 right-4 z-50 p-3 rounded-xl glass-effect hover:opacity-90 transition-all duration-150 shadow-lg"
+    >
+        <i data-lucide="sun" class="w-5 h-5 dark:hidden"></i>
+        <i data-lucide="moon" class="w-5 h-5 hidden dark:block text-white"></i>
     </button>
-</aside>
-        <!-- Main Content -->
-        <main id="mainContent" class="flex-1 md:ml-64 sm:ml-0 transition-all duration-300">
-        @if (isset($header))
-        <header class="bg-white shadow dark:bg-gray-800 flex items-center justify-between px-4 sm:px-6 lg:px-8 py-6">
-    <div>
-        {{ $header }}
-    </div>
-    
-    <!-- Avatar do usuário, botão de alterar tema e menu dropdown -->
-    <div class="flex items-center space-x-4">
-        <!-- Botão de Alterar Tema -->
-        <button id="themeToggle2" class="flex items-center justify-center w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-300">
-            <i class="fas fa-moon text-gray-800 dark:text-gray-200"></i>
-        </button>
 
-        <!-- Avatar e Nome do Usuário -->
-        <button id="userMenuButton" class="flex items-center space-x-3 focus:outline-none">
-            <div class="relative">
-                <img 
-                    src="{{ asset('/img/user-circle.png') }}" 
-                    alt="User Avatar" 
-                    class="w-10 h-10 rounded-full border-inside"
-                />
+    <!-- Mobile Menu Button -->
+    <button 
+        onclick="toggleSidebar()"
+        class="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white dark:bg-gray-800 shadow-lg"
+    >
+        <i data-lucide="menu" class="w-6 h-6 dark:text-white"></i>
+    </button>
+
+    @php
+        use Illuminate\Support\Facades\Auth;
+        $user = Auth::user();
+    @endphp
+    <!-- User Profile Modal -->
+    <div id="userModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="glass-effect rounded-2xl p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Minha Conta</h3>
+                <button onclick="toggleUserModal()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
             </div>
-            <div class="flex flex-col items-start hidden md:flex">
-                <span class="text-[16px] font-medium text-gray-800 dark:text-gray-200">
-                    {{ Auth::user()->name }}
-                </span>
-                <span class="text-[13px] text-gray-500 dark:text-gray-400 -mt-2">
-                    {{ Auth::user()->profile_name ?? 'Perfil Desconhecido' }}
-                </span>
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="w-16 h-16 theme-gradient rounded-2xl flex items-center justify-center shadow-lg">
+                    <span class="text-2xl font-bold text-white">PV</span>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white">{{$user->name}}</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ $user->perfilAtual()->name }}</p>
+                </div>
             </div>
-        </button>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span>{{$user->email}}</span>
+                </div>
+            </div>
 
-        <!-- Dropdown -->
-        @if(auth()->check())
-            @if(auth()->user()->adm())
-                @include('layouts.menu.dropdownAdm')
-            @elseif(auth()->user()->cliente())
-                @include('layouts.menu.dropdownCliente')
-            @endif
-        @endif
+            <!-- Color Theme Selection -->
+            <div class="space-y-4 mb-6">
+                <h4 class="font-semibold text-gray-900 dark:text-white">Tema de Cores</h4>
+                <div class="grid grid-cols-5 gap-3">
+                    <button onclick="setColorTheme('purple')" class="w-full h-10 bg-gradient-to-r from-[#b362fc] to-[#cd53f4] rounded-lg"></button>
+                    <button onclick="setColorTheme('blue')" class="w-full h-10 bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] rounded-lg"></button>
+                    <button onclick="setColorTheme('green')" class="w-full h-10 bg-gradient-to-r from-[#10b981] to-[#34d399] rounded-lg"></button>
+                    <button onclick="setColorTheme('orange')" class="w-full h-10 bg-gradient-to-r from-[#f97316] to-[#fb923c] rounded-lg"></button>
+                    <button onclick="setColorTheme('pink')" class="w-full h-10 bg-gradient-to-r from-[#ec4899] to-[#f472b6] rounded-lg"></button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="window.location.href='/subscription'" class="flex items-center justify-center space-x-2 p-3 rounded-xl bg-white/50 dark:bg-gray-700/50 hover:bg-white/70 dark:hover:bg-gray-700/70 transition-colors duration-150">
+                    <i data-lucide="credit-card" class="w-5 h-5 text-purple-500"></i>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Gerenciar Assinatura</span>
+                </button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="flex items-center justify-center space-x-2 p-3 rounded-xl bg-white/50 dark:bg-gray-700/50 hover:bg-white/70 dark:hover:bg-gray-700/70 transition-colors duration-150">
+                        <i data-lucide="power" class="w-5 h-5 text-red-500"></i>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Sair</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
     </div>
-</header>
 
-    @endif
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out w-64 glass-effect z-30">
+        <div class="p-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 theme-gradient rounded-2xl flex items-center justify-center shadow-lg">
+                    <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                </div>
+                <h1 class="text-xl font-bold theme-text">CopyWave</h1>
+            </div>
+        </div>
 
-    <div class="py-6 px-4">
-        {{ $slot }}
+        <nav class="flex flex-col h-[calc(100%-96px)]">
+            <div class="px-4 space-y-2">
+                @if(auth()->check())
+                    @if(auth()->user()->adm())
+                        @include('layouts.menu.dropdownAdm')
+                    @elseif(auth()->user()->cliente())
+                        @include('layouts.menu.dropdownCliente')
+                    @endif
+                @endif
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="mt-auto p-4">
+                <!-- Plan Status Card -->
+                <div class="bg-white/50 dark:bg-gray-700/50 rounded-xl p-3 backdrop-blur-sm mb-3">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="crown" class="w-5 h-5 text-yellow-500"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">Plano Pro</span>
+                        </div>
+                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-xs">Ativo</span>
+                    </div>
+                    <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                        <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                        Próxima cobrança em 15 dias
+                    </div>
+                </div>
+
+                <!-- User Profile Card -->
+                <div onclick="toggleUserModal()" class="bg-white/50 dark:bg-gray-700/50 rounded-xl p-3 cursor-pointer backdrop-blur-sm hover:bg-white/70 dark:hover:bg-gray-700/70 transition-colors duration-150">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 theme-gradient rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="text-sm font-bold text-white">{{ Str::substr($user->name, 0, 2) }}</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 dark:text-white truncate">{{ $user->name }}</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ $user->perfilAtual()->name}}</p>
+                        </div>
+                        <i data-lucide="settings" class="w-4 h-4 text-gray-400 dark:text-gray-500"></i>
+                    </div>
+                </div>
+                </div>
+            </nav>
+        </aside>
+        <main class="flex-1 overflow-y-auto md:ml-64">
+            @yield('content')
+        </main>
     </div>
-</main>
-    </div>
 
-    <script>
-    // Alternar Sidebar
-    const toggleSidebar = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
-
-    // Função para atualizar a margem dependendo do tamanho da tela e do estado do sidebar
-    function updateMainContentMargin() {
-        if (window.innerWidth >= 640) {
-            // Se o sidebar estiver expandido, adicionar a margem ml-64
-            if (sidebar.classList.contains('w-64')) {
-                mainContent.classList.add('ml-64');
-            } else {
-                mainContent.classList.remove('ml-64');
-            }
-        } else {
-            // Em telas pequenas, remover a margem ml-64
-            mainContent.classList.remove('ml-64');
-        }
-    }
-
-    toggleSidebar.addEventListener('click', function () {
-        if (sidebar.classList.contains('w-64')) {
-            sidebar.classList.remove('w-64');
-            sidebar.classList.add('w-20');
-            sidebar.classList.add('reduced'); // Adiciona a classe reduzida ao sidebar
-            mainContent.classList.add('ml-16');
-            mainContent.classList.remove('ml-64');
-        } else {
-            sidebar.classList.remove('w-20');
-            sidebar.classList.add('w-64');
-            sidebar.classList.remove('reduced'); // Remove a classe reduzida
-            mainContent.classList.add('ml-64');
-            mainContent.classList.remove('ml-16');
-        }
-        
-        // Atualizar a margem após a mudança no estado do sidebar
-        updateMainContentMargin();
-    });
-
-    // Chamar a função no carregamento para garantir que a margem esteja correta
-    window.addEventListener('resize', updateMainContentMargin);
-    updateMainContentMargin();
-</script>
-
- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const htmlElement = document.documentElement; // Elemento <html>
-            const themeToggle = document.getElementById('themeToggle');
-            const themeToggle2 = document.getElementById('themeToggle2');
-
-            // Função para alternar tema
-            const toggleTheme = () => {
-                if (htmlElement.classList.contains('dark')) {
-                    htmlElement.classList.remove('dark'); // Remove o modo escuro
-                    localStorage.setItem('theme', 'light'); // Salva a preferência no localStorage
-                } else {
-                    htmlElement.classList.add('dark'); // Ativa o modo escuro
-                    localStorage.setItem('theme', 'dark'); // Salva a preferência no localStorage
-                }
-            };
-
-            // Verifica o tema salvo no localStorage
-            if (localStorage.getItem('theme') === 'dark') {
-                htmlElement.classList.add('dark');
-            } else {
-                htmlElement.classList.remove('dark');
-            }
-
-            // Evento para alternar tema
-            themeToggle.addEventListener('click', toggleTheme);
-            themeToggle2.addEventListener('click', toggleTheme);
-        });
-    </script>
     <script>
         // SweetAlert Mensagens
         const successMessage = "{{ session('success') ?? '' }}";
@@ -244,43 +258,113 @@
         });
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const userMenuButton = document.getElementById('userMenuButton');
-        const userMenuDropdown = document.getElementById('userMenuDropdown');
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-        userMenuButton.addEventListener('click', () => {
-            userMenuDropdown.classList.toggle('hidden');
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // Set initial theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Color Theme Management
+        function setColorTheme(theme) {
+            document.body.className = document.body.className.replace(/theme-\w+/, '');
+            document.body.classList.add(`theme-${theme}`);
+            localStorage.setItem('colorTheme', theme);
+        }
+
+        // Set initial color theme
+        const savedColorTheme = localStorage.getItem('colorTheme') || 'purple';
+        setColorTheme(savedColorTheme);
+
+        // Remove modification
+        function removeModification(button) {
+            button.closest('.modification').remove();
+            updateModificationIndexes();
+        }
+
+        // Update modification indexes after removal
+        function updateModificationIndexes() {
+            const container = document.getElementById('modifications-container');
+            const modifications = container.getElementsByClassName('modification');
+            
+            Array.from(modifications).forEach((mod, index) => {
+                const select = mod.querySelector('select');
+                const inputs = mod.querySelectorAll('input');
+                
+                select.name = `modifications[${index}][type]`;
+                inputs[0].name = `modifications[${index}][old_value]`;
+                inputs[1].name = `modifications[${index}][new_value]`;
+            });
+        }
+
+        // Add modification field
+        document.getElementById('add-modification').addEventListener('click', function() {
+            const container = document.getElementById('modifications-container');
+            const index = container.children.length;
+            const div = document.createElement('div');
+            div.className = 'modification grid grid-cols-1 md:grid-cols-7 gap-4 items-center';
+            div.innerHTML = `
+                <select name="modifications[${index}][type]" class="col-span-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-gray-700/50 text-gray-900 dark:text-white">
+                    <option value="link">Link</option>
+                    <option value="image">Imagem</option>
+                    <option value="script">Script</option>
+                </select>
+                <input type="text" name="modifications[${index}][old_value]" placeholder="Valor Antigo" class="col-span-2 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-gray-700/50 text-gray-900 dark:text-white">
+                <input type="text" name="modifications[${index}][new_value]" placeholder="Novo Valor" class="col-span-2 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-gray-700/50 text-gray-900 dark:text-white">
+                <button type="button" onclick="removeModification(this)" class="col-span-1 px-3 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-colors duration-150">
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                </button>
+            `;
+            container.appendChild(div);
+            lucide.createIcons();
         });
 
+        // Form submission
+        document.getElementById('createPageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form submission logic here
+            console.log('Form submitted');
+        });
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+
+        // User modal toggle
+        function toggleUserModal() {
+            const modal = document.getElementById('userModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+
+        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', (e) => {
-            if (!userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
-                userMenuDropdown.classList.add('hidden');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarButton = document.querySelector('[onclick="toggleSidebar()"]');
+            
+            if (!sidebar.contains(e.target) && !sidebarButton.contains(e.target) && !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
             }
         });
-    });
-</script>
-<script>
-    const openModalButton = document.getElementById('openModal');
-    const closeModalButton = document.getElementById('closeModal');
-    const modal = document.getElementById('filterModal');
-
-    openModalButton.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-    });
-
-    closeModalButton.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
-
-    // Fechar modal ao clicar fora
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.add('hidden');
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
-
-
-

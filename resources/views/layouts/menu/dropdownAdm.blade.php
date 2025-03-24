@@ -1,14 +1,30 @@
-<div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-50">
-    <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-        Inicio
-    </a>
-    <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-        Minha Conta
-    </a>
-    <form method="POST" action="/logout">
-        @csrf
-        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-            Logout
-        </button>
-    </form>
-</div>
+<a href=" {{ route('admin.dashboard')}}" class="flex items-center space-x-3 p-3 rounded-xl font-medium
+    {{ Str::contains(request()->route()->getName(), 'dashboard') ? 'theme-gradient text-white' : 'text-gray-700 dark:text-gray-300' }}">
+    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+    <span>Dashboard</span>
+</a>
+<a href=" {{ route('admin.plans.index')}}" class="flex items-center space-x-3 p-3 rounded-xl font-medium
+    {{ Str::contains(request()->route()->getName(), 'plans') ? 'theme-gradient text-white' : 'text-gray-700 dark:text-gray-300' }}">
+    <i data-lucide="credit-card" class="w-5 h-5"></i>
+    <span>Gestão de Planos</span>
+</a>
+<a href=" {{ route('admin.subscriptions.index')}}" class="flex items-center space-x-3 p-3 rounded-xl font-medium
+    {{ Str::contains(request()->route()->getName(), 'subscriptions') ? 'theme-gradient text-white' : 'text-gray-700 dark:text-gray-300' }}">
+    <i data-lucide="credit-card" class="w-5 h-5"></i>
+    <span>Assinaturas</span>
+</a>
+<a href=" {{ route('pages.index')}}" class="flex items-center space-x-3 p-3 rounded-xl font-medium
+    {{ Str::contains(request()->route()->getName(), 'pages') ? 'theme-gradient text-white' : 'text-gray-700 dark:text-gray-300' }}">
+    <i data-lucide="file-text" class="w-5 h-5"></i>
+    <span>Páginas</span>
+</a>
+<a href=" {{ route('domains.index')}}" class="flex items-center space-x-3 p-3 rounded-xl font-medium
+    {{ Str::contains(request()->route()->getName(), 'domains') ? 'theme-gradient text-white' : 'text-gray-700 dark:text-gray-300' }}">
+    <i data-lucide="globe" class="w-5 h-5"></i>
+    <span>Gerenciar Domínios</span>
+</a>
+<a href=" {{ route('admin.users.index')}}" class="flex items-center space-x-3 p-3 rounded-xl font-medium
+    {{ Str::contains(request()->route()->getName(), 'users') ? 'theme-gradient text-white' : 'text-gray-700 dark:text-gray-300' }}">
+    <i data-lucide="users" class="w-5 h-5"></i>
+    <span>Gestão de Usuário</span>
+</a>

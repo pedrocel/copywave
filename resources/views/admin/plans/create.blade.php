@@ -1,69 +1,120 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-            <i class="fas fa-clipboard-list mr-2"></i> Criar Novo Plano
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="container mx-auto">
-        <form action="{{ route('admin.plans.store') }}" method="POST" class="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-            @csrf
+@section('title', 'Páginas')
 
-            <div class="mb-4">
-                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium">Nome</label>
-                <input type="text" name="name" id="name" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('name') }}" required>
-                @error('name')
-                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
+@section('content')
+<header class="glass-effect border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-20">
+    <div class="flex justify-between items-center px-4 md:px-8 py-6">
+        <div class="flex items-center">
+            <button onclick="toggleSidebar()" class="md:hidden mr-4 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+            <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">Lista de Páginas</h2>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="{{ route('admin.plans.create') }}" class="theme-gradient text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:opacity-90 transition-opacity duration-150">
+                <i data-lucide="plus" class="w-5 h-5"></i>
+                <span class="hidden md:inline">Criar Plano</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+@if(session('success'))
+<div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+    {{ session('success') }}
+</div>
+@endif
+
+<div class="p-4 md:p-8">
+
+<form action="{{ route('admin.plans.store') }}" class="space-y-8">
+    @csrf
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex items-center space-x-2 mb-6">
+            <i data-lucide="info" class="w-5 h-5 text-blue-500"></i>
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Informações Básicas</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Name -->
+            <div class="col-span-2">
+                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Nome do Plano
+                </label>
+                <input type="text" name="name" id="name" required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                    placeholder="Ex: Plano Premium">
             </div>
 
-            <div class="mb-4">
-                <label for="description" class="block text-gray-700 dark:text-gray-300 font-medium">Descrição</label>
-                <textarea name="description" id="description" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" required>{{ old('description') }}</textarea>
-                @error('description')
-                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
+            <!-- Description -->
+            <div class="col-span-2">
+                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Descrição
+                </label>
+                <textarea name="description" id="description" rows="3" required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                    placeholder="Descreva os benefícios do plano..."></textarea>
             </div>
 
-            <div class="mb-4">
-                <label for="link_image" class="block text-gray-700 dark:text-gray-300 font-medium">Link da Imagem</label>
-                <input type="url" name="link_image" id="link_image" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('link_image') }}">
-                @error('link_image')
-                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
+            <!-- Image URL -->
+            <div class="col-span-2">
+                <label for="link_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    URL da Imagem
+                </label>
+                <div class="flex">
+                    <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 sm:text-sm">
+                        <i data-lucide="image" class="w-5 h-5"></i>
+                    </span>
+                    <input type="url" name="link_image" id="link_image"
+                        class="flex-1 rounded-none rounded-r-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm px-4 py-2"
+                        placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Card -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex items-center space-x-2 mb-6">
+            <i data-lucide="credit-card" class="w-5 h-5 text-green-500"></i>
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Precificação e Limites</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Value -->
+            <div>
+                <label for="value" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Valor
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 dark:text-gray-400">
+                        R$
+                    </span>
+                    <input type="text" name="value" id="value" required
+                        class="w-full pl-8 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="0,00"
+                        oninput="this.value = this.value.replace(/[^0-9,.]/g, '')">
+                </div>
             </div>
 
-            <div class="mb-4">
-                <label for="id_plan_external" class="block text-gray-700 dark:text-gray-300 font-medium">ID Plano Externo</label>
-                <input type="text" name="id_plan_external" id="id_plan_external" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('id_plan_external') }}">
+            <!-- Page Quantity -->
+            <div>
+                <label for="page_quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Quantidade de Páginas
+                </label>
+                <input type="number" name="page_quantity" id="page_quantity" required min="1"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Ex: 10">
             </div>
 
-            <div class="mb-4">
-                <label for="id_offer_external" class="block text-gray-700 dark:text-gray-300 font-medium">ID Oferta Externa</label>
-                <input type="text" name="id_offer_external" id="id_offer_external" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('id_offer_external') }}">
-            </div>
-
-            <div class="mb-4">
-                <label for="link_checkout_external" class="block text-gray-700 dark:text-gray-300 font-medium">Link de Checkout Externo</label>
-                <input type="url" name="link_checkout_external" id="link_checkout_external" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('link_checkout_external') }}">
-            </div>
-
-            <div class="mb-4">
-                <label for="value" class="block text-gray-700 dark:text-gray-300 font-medium">Valor</label>
-                <input type="text" name="value" id="value" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('value') }}" required oninput="this.value = this.value.replace(/[^0-9,.]/g, '')">
-                @error('value')
-                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <label for="page_quantity" class="block text-gray-700 dark:text-gray-300 font-medium">Quantidade de Páginas</label>
-                <input type="number" name="page_quantity" id="page_quantity" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500" value="{{ old('page_quantity') }}" required>
-            </div>
-
-            <div class="mb-4">
-                <label for="billing_cycle" class="block text-gray-700 dark:text-gray-300 font-medium">Ciclo de Cobrança</label>
-                <select name="billing_cycle" id="billing_cycle" class="border border-gray-300 dark:border-gray-700 rounded w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:ring focus:ring-blue-500 focus:border-blue-500">
+            <!-- Billing Cycle -->
+            <div>
+                <label for="billing_cycle" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Ciclo de Cobrança
+                </label>
+                <select name="billing_cycle" id="billing_cycle"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     <option value="monthly">Mensal</option>
                     <option value="quarterly">Trimestral</option>
                     <option value="semiannual">Semestral</option>
@@ -73,16 +124,76 @@
                 </select>
             </div>
 
-            <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-medium">Status</label>
-                <input type="checkbox" name="status" id="status" class="mr-2" value="1" checked>
-                <label for="status" class="text-gray-700 dark:text-gray-300">Ativo</label>
+            <!-- Status -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Status do Plano
+                </label>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" name="status" value="1" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300">Ativo</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Integration Card -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+        <div class="flex items-center space-x-2 mb-6">
+            <i data-lucide="link" class="w-5 h-5 text-purple-500"></i>
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Integração Externa</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- External Plan ID -->
+            <div>
+                <label for="id_plan_external" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    ID do Plano Externo
+                </label>
+                <input type="text" name="id_plan_external" id="id_plan_external"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Ex: plan_123">
             </div>
 
-            <div class="flex justify-end">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Salvar</button>
-                <a href="{{ route('admin.plans.index') }}" class="ml-4 text-gray-600 dark:text-gray-400 hover:underline">Cancelar</a>
+            <!-- External Offer ID -->
+            <div>
+                <label for="id_offer_external" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    ID da Oferta Externa
+                </label>
+                <input type="text" name="id_offer_external" id="id_offer_external"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Ex: offer_123">
             </div>
-        </form>
+
+            <!-- External Checkout Link -->
+            <div class="col-span-2">
+                <label for="link_checkout_external" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Link de Checkout Externo
+                </label>
+                <div class="flex">
+                    <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 sm:text-sm">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    </span>
+                    <input type="url" name="link_checkout_external" id="link_checkout_external"
+                        class="flex-1 rounded-none rounded-r-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:text-sm px-4 py-2"
+                        placeholder="https://checkout.exemplo.com/plano">
+                </div>
+            </div>
+        </div>
     </div>
-</x-app-layout>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-end space-x-4">
+        <a href="/admin/plans" 
+            class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+            Cancelar
+        </a>
+        <button type="submit" 
+            class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-sm hover:shadow transition duration-200">
+            Salvar Plano
+        </button>
+    </div>
+</form>
+
+@endsection
