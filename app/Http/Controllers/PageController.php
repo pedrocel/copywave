@@ -18,9 +18,46 @@ class PageController extends Controller
         return view('welcome', compact('plans'));   
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $pages = PageModel::all();
+        $query = PageModel::query();
+        
+        // Filtro por status
+        if ($request->has('status')) {
+            if ($request->status !== 'all') {
+                $query->where('status', $request->status === 'active' ? 1 : 0);
+            }
+        }
+        
+        // Pesquisa por nome ou URL
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('url_page', 'like', "%{$search}%");
+            });
+        }
+        
+        // Ordenação
+        $sortField = $request->sort_by ?? 'name';
+        $sortDirection = $request->sort_direction ?? 'asc';
+        
+        // Validar campos de ordenação permitidos
+        $allowedSortFields = ['name', 'visits', 'created_at', 'status'];
+        if (!in_array($sortField, $allowedSortFields)) {
+            $sortField = 'name';
+        }
+        
+        $query->orderBy($sortField, $sortDirection);
+        
+        // Paginação (opcional)
+        $pages = $query->paginate(12)->withQueryString();
+        
+        // Se for uma requisição AJAX, retornar apenas os dados
+        if ($request->ajax()) {
+            return view('pages.partials.page-cards', compact('pages'))->render();
+        }
+        
         return view('pages.index', compact('pages'));
     }
 
@@ -124,7 +161,7 @@ class PageController extends Controller
         $page->domain_id = null;
         $page->save();
 
-        return redirect()->route('pages.detail', $id)->with('success', 'Domínio desvinculado com sucesso.');
+        return redirect()->route('pages.detail', $page->name)->with('success', 'Domínio desvinculado com sucesso.');
     }
 
     public function checkCname(Request $request)
