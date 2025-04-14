@@ -96,105 +96,179 @@
         
         <!-- Vincular Domínio e DNS -->
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-100 dark:border-gray-700">
-                Domínio e DNS
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 pb-2 border-b border-gray-100 dark:border-gray-700 flex items-center">
+                <i data-lucide="globe" class="w-5 h-5 mr-2 text-purple-500 dark:text-purple-400"></i>
+                Configuração de Domínio
             </h3>
             
-            <!-- Instruções Cloudflare -->
-            <div class="mb-6 bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800/30">
-                <h4 class="text-sm font-semibold text-orange-800 dark:text-orange-300 mb-2 flex items-center">
-                    <i data-lucide="shield" class="w-4 h-4 mr-2"></i>
-                    Proteja seu domínio com Cloudflare (Gratuito)
-                </h4>
-                <p class="text-xs text-orange-700 dark:text-orange-400 mb-3">
-                    O Cloudflare oferece proteção gratuita contra quedas e ataques para seu domínio. Siga os passos:
-                </p>
-                <ol class="text-xs text-orange-700 dark:text-orange-400 space-y-2 ml-5 list-decimal">
-                    <li>Acesse <a href="https://www.cloudflare.com/pt-br/impact-portal/getting-started/" target="_blank" class="text-orange-600 dark:text-orange-300 underline">Cloudflare</a> e crie uma conta gratuita</li>
-                    <li>Adicione seu domínio e siga as instruções</li>
-                    <li>Atualize os nameservers do seu domínio para os fornecidos pelo Cloudflare</li>
-                    <li>Configure o registro CNAME conforme instruções abaixo</li>
-                </ol>
-            </div>
-            
             @if ($page->domain_id)
-                <div class="mb-6">
-                    <h4 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Domínio Vinculado</h4>
+                <!-- Domínio Vinculado -->
+                <div class="mb-5">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">Domínio Vinculado</h4>
+                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded-full">Ativo</span>
+                    </div>
                     <div class="flex items-center bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <i data-lucide="link" class="w-4 h-4 mr-2 text-gray-500 dark:text-gray-400"></i>
                         <span class="text-gray-900 dark:text-white font-medium">{{ $page->domain->domain }}</span>
+                    </div>
+                    
+                    <form action="{{ route('pages.detachDomain', $page->id) }}" method="POST" class="mt-3">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
+                            <i data-lucide="unlink" class="w-4 h-4"></i>
+                            <span>Desvincular Domínio</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Instruções Cloudflare -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-gray-800 dark:to-gray-750 rounded-xl border border-orange-100 dark:border-orange-900/20 p-5 mb-5">
+                    <div class="flex items-start mb-3">
+                        <div class="bg-orange-500 dark:bg-orange-600 rounded-full p-2 mr-3">
+                            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-orange-800 dark:text-orange-300">Proteja seu domínio com Cloudflare</h4>
+                            <p class="text-xs text-orange-700 dark:text-orange-400 mt-1">Serviço gratuito de proteção contra quedas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-3 border border-orange-100 dark:border-orange-900/20">
+                            <h5 class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">1. Configure o Cloudflare</h5>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                                Acesse <a href="https://www.cloudflare.com/pt-br/impact-portal/getting-started/" target="_blank" class="text-orange-600 dark:text-orange-400 underline">Cloudflare</a> e adicione seu domínio.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-3 border border-orange-100 dark:border-orange-900/20">
+                            <h5 class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">2. Configurações Importantes</h5>
+                            <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-2 ml-4 list-disc">
+                                <li><span class="font-medium text-orange-700 dark:text-orange-400">Proxy:</span> Desativado (ícone cinza)</li>
+                                <li><span class="font-medium text-orange-700 dark:text-orange-400">SSL:</span> Flexível</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Configuração CNAME -->
-                <div class="mb-6 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800/30">
-                    <h4 class="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center">
-                        <i data-lucide="link" class="w-4 h-4 mr-2"></i>
-                        Configuração de DNS (CNAME)
-                    </h4>
-                    
-                    <div class="grid grid-cols-2 gap-2 mb-3">
-                        <div class="bg-white dark:bg-gray-700 p-2 rounded border border-blue-100 dark:border-blue-800/50">
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Nome (Name)</p>
-                            <p class="text-sm font-mono font-medium text-blue-800 dark:text-blue-300">{{ $page->domain->domain }}</p>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-750 rounded-xl border border-blue-100 dark:border-blue-900/20 p-5 mb-5">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-blue-500 dark:bg-blue-600 rounded-full p-2 mr-3">
+                            <i data-lucide="settings" class="w-5 h-5 text-white"></i>
                         </div>
-                        <div class="bg-white dark:bg-gray-700 p-2 rounded border border-blue-100 dark:border-blue-800/50">
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Valor (Value)</p>
-                            <p class="text-sm font-mono font-medium text-blue-800 dark:text-blue-300">{{ $page->name }}.copywave.com.br</p>
+                        <div>
+                            <h4 class="text-sm font-semibold text-blue-800 dark:text-blue-300">Configuração de DNS</h4>
+                            <p class="text-xs text-blue-700 dark:text-blue-400 mt-1">Adicione este registro CNAME no Cloudflare</p>
                         </div>
                     </div>
                     
-                    <p class="text-xs text-blue-700 dark:text-blue-400 mt-2">
-                        <i data-lucide="info" class="w-3 h-3 inline mr-1"></i>
-                        Mantenha o proxy do Cloudflare ativado (ícone laranja) para proteção máxima.
-                    </p>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border border-blue-100 dark:border-blue-800/30">
+                        <div class="grid grid-cols-2 gap-4 mb-3">
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Tipo</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-600 py-1 px-2 rounded">CNAME</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">TTL</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-600 py-1 px-2 rounded">Auto</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Nome (Name)</p>
+                                <div class="flex items-center bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-100 dark:border-blue-800/30">
+                                    <span class="text-sm font-mono font-medium text-blue-800 dark:text-blue-300">{{ $page->domain->domain }}</span>
+                                    <button onclick="copyToClipboard('{{ $page->domain->domain }}')" class="ml-auto text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Valor (Target)</p>
+                                <div class="flex items-center bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-100 dark:border-blue-800/30">
+                                    <span class="text-sm font-mono font-medium text-blue-800 dark:text-blue-300">{{ $page->name }}.copywave.com.br</span>
+                                    <button onclick="copyToClipboard('{{ $page->name }}.copywave.com.br')" class="ml-auto text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <form action="{{ route('pages.detachDomain', $page->id) }}" method="POST" class="mb-6">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
-                        <i data-lucide="unlink" class="w-4 h-4"></i>
-                        <span>Desvincular Domínio</span>
-                    </button>
-                </form>
-                
-                <div>
-                    <h4 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Verificar CNAME</h4>
-                    <div class="mb-3 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg text-xs text-gray-600 dark:text-gray-300">
-                        <p>Verifique se o CNAME <span class="font-mono font-medium text-blue-600 dark:text-blue-400">{{ $page->name }}.copywave.com.br</span> está configurado corretamente para o domínio <span class="font-mono font-medium text-blue-600 dark:text-blue-400">{{ $page->domain->domain }}</span></p>
+                <!-- Verificar CNAME -->
+                <div class="bg-white dark:bg-gray-750 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-purple-500 dark:bg-purple-600 rounded-full p-2 mr-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-gray-800 dark:text-gray-200">Verificar Configuração</h4>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Confirme se o DNS está configurado corretamente</p>
+                        </div>
                     </div>
-                    <button type="button" id="check-cname" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
+                    
+                    <button type="button" id="check-cname" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 flex items-center justify-center space-x-2 mb-3">
                         <i data-lucide="refresh-cw" class="w-4 h-4"></i>
-                        <span>Verificar CNAME</span>
+                        <span>Verificar Configuração DNS</span>
                     </button>
+                    
                     <div id="cname-result" class="mt-3 text-sm p-3 rounded-lg hidden"></div>
                     <div id="cname-details" class="mt-3 text-xs p-3 rounded-lg hidden bg-gray-50 dark:bg-gray-700 font-mono overflow-x-auto"></div>
                 </div>
-            @else
-                <form action="{{ route('pages.attachDomain', $page->id) }}" method="POST" class="mb-6">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="domain_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Selecionar Domínio</label>
-                        <select name="domain_id" id="domain_id" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                            @foreach($domains as $domain)
-                                <option value="{{ $domain->id }}">{{ $domain->domain }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
-                        <i data-lucide="link" class="w-4 h-4"></i>
-                        <span>Vincular Domínio</span>
-                    </button>
-                </form>
                 
-                <!-- Informações sobre proteção de domínio -->
-                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                    <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 flex items-center">
+            @else
+                <!-- Sem Domínio Vinculado -->
+                <div class="bg-gray-50 dark:bg-gray-750 rounded-xl p-5 mb-5 text-center">
+                    <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="link-2-off" class="w-8 h-8 text-gray-500 dark:text-gray-400"></i>
+                    </div>
+                    <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nenhum domínio vinculado</h4>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mb-5">
+                        Vincule um domínio para configurar o DNS e proteger seu site com Cloudflare.
+                    </p>
+                    
+                    <form action="{{ route('pages.attachDomain', $page->id) }}" method="POST">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="domain_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 text-left">Selecionar Domínio</label>
+                            <select name="domain_id" id="domain_id" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                @foreach($domains as $domain)
+                                    <option value="{{ $domain->id }}">{{ $domain->domain }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
+                            <i data-lucide="link" class="w-4 h-4"></i>
+                            <span>Vincular Domínio</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Prévia da Configuração -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-750 rounded-xl border border-blue-100 dark:border-blue-900/20 p-5">
+                    <h4 class="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center">
                         <i data-lucide="info" class="w-4 h-4 mr-2"></i>
                         Após vincular um domínio
                     </h4>
+                    
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-3 border border-blue-100 dark:border-blue-800/30 mb-3">
+                        <p class="text-xs text-gray-700 dark:text-gray-300">
+                            Você precisará configurar um registro <span class="font-medium">CNAME</span> no Cloudflare apontando para:
+                        </p>
+                        <div class="mt-2 bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-100 dark:border-blue-800/30">
+                            <span class="text-sm font-mono font-medium text-blue-800 dark:text-blue-300">{{ $page->name }}.copywave.com.br</span>
+                        </div>
+                    </div>
+                    
                     <p class="text-xs text-gray-600 dark:text-gray-400">
-                        Você poderá proteger seu domínio com o Cloudflare (gratuito) e configurar o registro CNAME para apontar para <span class="font-mono font-medium">{{ $page->name }}.copywave.com.br</span>
+                        <i data-lucide="alert-circle" class="w-3 h-3 inline mr-1"></i>
+                        Lembre-se de desativar o proxy e configurar o SSL como Flexível no Cloudflare.
                     </p>
                 </div>
             @endif
@@ -251,6 +325,26 @@
                 setTimeout(() => successMessage.remove(), 500);
             }, 5000);
         }
+        
+        // Função para copiar para a área de transferência
+        window.copyToClipboard = function(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Feedback visual temporário
+                const tooltip = document.createElement('div');
+                tooltip.className = 'fixed top-4 right-4 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
+                tooltip.innerHTML = '<div class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2"></i>Copiado para a área de transferência</div>';
+                document.body.appendChild(tooltip);
+                
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    tooltip.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                    setTimeout(() => tooltip.remove(), 500);
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Erro ao copiar texto: ', err);
+            });
+        };
         
         // Verificação de CNAME usando Cloudflare DNS-over-HTTPS API
         const checkCnameButton = document.getElementById('check-cname');
@@ -346,4 +440,17 @@
         }
     });
 </script>
+
+<style>
+    .animate-fade-in-out {
+        animation: fadeInOut 2.5s ease-in-out;
+    }
+    
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-10px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+</style>
 @endsection
